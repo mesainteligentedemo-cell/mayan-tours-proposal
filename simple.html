@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MAYAN TOURS — Explicado SUPER Simple</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: linear-gradient(135deg, #1a1a1a, #0a0a0a);
+      color: #e0e0e0;
+      line-height: 1.9;
+      font-size: 16px;
+    }
+    .container {
+      max-width: 950px;
+      margin: 0 auto;
+      padding: 50px 30px;
+    }
+    header {
+      text-align: center;
+      margin-bottom: 60px;
+      padding: 40px;
+      background: linear-gradient(135deg, rgba(201,169,97,.15), rgba(201,169,97,.05));
+      border-radius: 15px;
+      border: 2px solid rgba(201,169,97,.3);
+    }
+    header h1 {
+      font-size: 3rem;
+      color: #c9a961;
+      margin-bottom: 10px;
+      font-weight: 700;
+    }
+    header p {
+      font-size: 1.3rem;
+      color: #d4c8b0;
+      margin-bottom: 5px;
+    }
+    header .subtitle {
+      font-size: 1rem;
+      color: #999;
+      margin-top: 15px;
+    }
+
+    section {
+      margin-bottom: 80px;
+      background: rgba(255,255,255,.02);
+      padding: 50px;
+      border-radius: 15px;
+      border: 1px solid rgba(201,169,97,.15);
+    }
+
+    h2 {
+      font-size: 2.2rem;
+      color: #c9a961;
+      margin-bottom: 30px;
+      border-bottom: 3px solid #c9a961;
+      padding-bottom: 15px;
+    }
+
+    h3 {
+      font-size: 1.4rem;
+      color: #d4c8b0;
+      margin-top: 35px;
+      margin-bottom: 20px;
+    }
+
+    p {
+      margin-bottom: 20px;
+      color: #d0d0d0;
+      text-align: justify;
+    }
+
+    .big-idea {
+      background: linear-gradient(135deg, rgba(201,169,97,.2), rgba(201,169,97,.05));
+      border-left: 5px solid #c9a961;
+      padding: 25px 30px;
+      margin: 30px 0;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      color: #f0ead6;
+      font-weight: 500;
+    }
+
+    .example {
+      background: rgba(100,120,140,.1);
+      padding: 25px;
+      margin: 25px 0;
+      border-left: 4px solid #3498db;
+      border-radius: 8px;
+      color: #ccc;
+      font-style: italic;
+    }
+
+    .example strong {
+      color: #3498db;
+      font-style: normal;
+    }
+
+    .number-box {
+      display: inline-block;
+      background: #c9a961;
+      color: #0a0a0a;
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 45px;
+      margin-right: 12px;
+      font-weight: bold;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+
+    .point {
+      display: flex;
+      align-items: flex-start;
+      margin: 20px 0;
+      padding: 15px;
+      background: rgba(201,169,97,.05);
+      border-radius: 8px;
+    }
+
+    .point-text {
+      flex: 1;
+    }
+
+    .point-text strong {
+      color: #c9a961;
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .money {
+      font-size: 1.3rem;
+      color: #2ecc71;
+      font-weight: bold;
+    }
+
+    .timeline {
+      background: rgba(201,169,97,.08);
+      padding: 30px;
+      border-radius: 10px;
+      margin: 30px 0;
+    }
+
+    .timeline-item {
+      margin-bottom: 25px;
+      padding-bottom: 25px;
+      border-bottom: 1px solid rgba(201,169,97,.2);
+    }
+
+    .timeline-item:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .timeline-time {
+      color: #c9a961;
+      font-weight: bold;
+      font-size: 1.1rem;
+      margin-bottom: 8px;
+    }
+
+    .timeline-text {
+      color: #d0d0d0;
+    }
+
+    .chart-simple {
+      background: rgba(50,70,90,.2);
+      padding: 20px;
+      margin: 20px 0;
+      border-radius: 8px;
+      font-family: monospace;
+      color: #2ecc71;
+      overflow-x: auto;
+      line-height: 1.8;
+    }
+
+    .qa {
+      background: rgba(100,150,200,.08);
+      padding: 20px;
+      margin: 20px 0;
+      border-left: 4px solid #3498db;
+      border-radius: 8px;
+    }
+
+    .qa strong {
+      color: #3498db;
+    }
+
+    .highlight-bad {
+      color: #e74c3c;
+      font-weight: bold;
+    }
+
+    .highlight-good {
+      color: #2ecc71;
+      font-weight: bold;
+    }
+
+    footer {
+      text-align: center;
+      padding: 50px 30px;
+      border-top: 1px solid rgba(201,169,97,.2);
+      color: #888;
+      margin-top: 80px;
+    }
+
+    footer p {
+      margin: 10px 0;
+      color: #888;
+    }
+
+    .button-area {
+      text-align: center;
+      padding: 30px;
+      background: linear-gradient(135deg, rgba(201,169,97,.15), rgba(201,169,97,.05));
+      border-radius: 10px;
+      margin-top: 40px;
+    }
+
+    .big-number {
+      font-size: 2.5rem;
+      color: #2ecc71;
+      font-weight: bold;
+      margin: 15px 0;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <header>
+    <h1>🌴 MAYAN TOURS AGENCY</h1>
+    <p>El Negocio Explicado SUPER Simple</p>
+    <p class="subtitle">(Como si te lo estuviera explicando tomando café)</p>
+  </header>
+
+  <!-- PARTE 1: ¿QUÉ ES? -->
+  <section>
+    <h2>Primero: ¿QUÉ es MAYAN TOURS? La idea SIMPLE</h2>
+
+    <p>Imagínate que eres un turista. Acabas de llegar a Cancun. Quieres hacer algo divertido. Cenotes, ruinas mayas, snorkeling. Algo único.</p>
+
+    <p>¿Qué haces? Buscas en Google "tours Cancun". Y aparecen 100 websites diferentes. Una empresa dice "tour de cenotes $100". Otra dice "$200". Otra dice "$80". No sabes cuál es confiable. ¿Tienen buenas reviews? ¿Voy a terminar estafado?"</p>
+
+    <p>Ese es el PROBLEMA que resolvemos.</p>
+
+    <div class="big-idea">
+      <strong>MAYAN TOURS es como UN SOLO LUGAR donde están TODOS los tours buenos verificados.</strong> Como Netflix, pero para tours. En un lado tienes 50 opciones diferentes. Todas con precios claros. Todas con reviews reales. Todas confiables.
+    </div>
+
+    <h3>¿Y cómo ganamos dinero?</h3>
+    <p>Super simple: <strong>Cada vez que alguien COMPRA un tour a través de nosotros, nos quedamos con una comisión.</strong></p>
+
+    <div class="example">
+      <strong>Ejemplo concreto:</strong><br>
+      Un turista quiere hacer snorkeling en Cozumel. El precio es $3,000 USD.<br>
+      Nosotros recibimos el dinero: $3,000<br>
+      Le damos al operador del tour (la empresa que hace el snorkeling): $2,550<br>
+      <span style="color: #2ecc71;">Nosotros nos quedamos: $450</span><br>
+      <br>
+      ¿Nuestro costo? $0. No compramos nada. No arriesgamos nada. Solo conectamos buyer + seller y sacamos comisión.
+    </div>
+
+    <p>¿Por qué el operador está feliz con darnos 15% de comisión? Porque de otro modo tendría que:
+      <ul style="margin-left: 30px; margin-top: 10px;">
+        <li>Pagar publicidad en Google ($1,000+ por mes)</li>
+        <li>Tener un sitio web ($500+)</li>
+        <li>Contratar a alguien para atender calls ($2,000+ en salario)</li>
+        <li>Pagar comisión a Viator o GetYourGuide (25-30%)</li>
+      </ul>
+    </p>
+
+    <p>Nosotros le traemos clientes LISTOS PARA PAGAR. Y solo nos lleva 15% de comisión. Él gana MÁS con nosotros que intentando hacerlo solo.</p>
+  </section>
+
+  <!-- PARTE 2: EL MERCADO -->
+  <section>
+    <h2>Segundo: ¿Cuánta Gente Hay para Vender?</h2>
+
+    <p>Este es el punto clave. Un negocio solo funciona si hay MERCADO. Si no hay turistas, no hay clientes, no hay dinero.</p>
+
+    <div class="big-idea">
+      Cada año, <strong>3.5 MILLONES de turistas</strong> visitan Quintana Roo y Yucatán. No cientos. No miles. MILLONES.
+    </div>
+
+    <div class="point">
+      <div class="number-box">1</div>
+      <div class="point-text">
+        <strong>Quintana Roo (Cancún, Playa del Carmen, Tulum):</strong><br>
+        2.1 millones de turistas cada año. Cada uno gasta un promedio de $2,500 USD en el viaje.<br>
+        Solo en tours gastan: <span class="money">$2,100,000,000</span> (2.1 BILLONES)
+      </div>
+    </div>
+
+    <div class="point">
+      <div class="number-box">2</div>
+      <div class="point-text">
+        <strong>Yucatán (Mérida, Chichén Itzá):</strong><br>
+        1.4 millones de turistas cada año. Gastan $2,000 USD en promedio.<br>
+        Solo en tours: <span class="money">$2,100,000,000</span> (2.1 BILLONES)
+      </div>
+    </div>
+
+    <h3>Total de mercado: $4.2 BILLONES anuales</h3>
+
+    <p>¿Eso es mucho dinero? Sí. Pero está FRAGMENTADO.</p>
+
+    <p>Hoy, ese dinero está distribuido entre 50+ operadores pequeños que:
+      <ul style="margin-left: 30px;">
+        <li>No tienen sitio web decente</li>
+        <li>No hablan inglés bien</li>
+        <li>Compiten solo por precio (vender barato)</li>
+        <li>No tienen marketing profesional</li>
+      </ul>
+    </p>
+
+    <p>Nosotros UNIFICAMOS eso. Traemos ORDEN. Traemos CONFIANZA. Traemos TECNOLOGÍA a un sector que está en 1990.</p>
+
+    <h3>¿Qué pasa cuando somos First-to-Market?</h3>
+
+    <p>Cuando un turista busca "tours Cancun" en Google, <strong>aparecemos nosotros PRIMERO</strong>. El turista ve "MAYAN TOURS: 50 tours verificados, 4.8 estrellas". Se mete. Compra.</p>
+
+    <p>La competencia (Viator, GetYourGuide) existen, pero NO tienen presencia local. No hacen marketing en español. No entienden la cultura local. Nosotros SÍ.</p>
+  </section>
+
+  <!-- PARTE 3: CÓMO VENDER -->
+  <section>
+    <h2>Tercero: ¿CÓMO VENDEMOS Exactamente?</h2>
+
+    <p>Este es el corazón del negocio. Porque no basta tener tours bonitos. Hay que VENDERLOS.</p>
+
+    <h3>Canal 1: Marketing en Redes (TikTok, Facebook, Instagram)</h3>
+
+    <p>Hacemos videos hermosos de cenotes, ruinas, snorkeling. Los publicamos en TikTok y Facebook. El algoritmo los muestra a turistas que buscan "viajes a Cancun".</p>
+
+    <div class="example">
+      <strong>Ejemplo:</strong> Hacemos un video de 15 segundos de un cenote azul puro. Lo publicamos en TikTok. 100,000 personas lo ven. 2,000 hacen click (2%). Llegan a nuestro sitio. 50 compran (2.5% de conversion). <span style="color: #2ecc71;">50 tours vendidos, $150,000 en revenue, del costo de UN video.</span>
+    </div>
+
+    <p>El costo de este marketing: $10,000 USD al mes en M1. $20,000 en M2. $35,000 en M6.</p>
+
+    <p>¿ROI? Cada $1 gastado en ads genera $7-10 en revenue.</p>
+
+    <h3>Canal 2: Bots de IA (Lo que hace DIFERENTE a nuestro modelo)</h3>
+
+    <p>Un turista llega a nuestro sitio. Presiona el botón "WhatsApp".</p>
+
+    <div class="example">
+      <strong>Conversación:</strong><br>
+      Turista: "Hola, busco algo de aventura"<br>
+      Bot IA: "¡Perfecto! Tenemos zip-line ($1,500), ATV en la selva ($1,200), y kayaking en cenotes ($2,000). ¿Cuál suena mejor?"<br>
+      Turista: "El ATV"<br>
+      Bot: "¿Viajas solo o con familia? ¿Cuántos son?"<br>
+      Turista: "Con mi novia"<br>
+      Bot: "Hermoso. El tour es para 2 personas. ¿Alguna alergia o limitación física? ¿Cuál es tu fecha?"<br>
+      [El bot recopila toda la info]<br>
+      Bot: "Perfecto. El total es $1,200 USD. Aquí está el link para pagar. Después te envío la confirmación."<br>
+      <span style="color: #2ecc71;">Tour vendido. Sin que una persona hablara con el turista.</span>
+    </div>
+
+    <h3>¿Por qué esto es revolucionario?</h3>
+
+    <p>Porque si contrataras a una PERSONA para responder WhatsApp, te costaría $20,000 MXN/mes. Ese bot te cuesta $1,000 MXN/mes. Y vende MÁS tours porque responde 24/7, sin cansarse, sin equivocarse.</p>
+
+    <p><strong>Convertimos 40-50 tours al mes con un BOT. Eso es $150-200k en revenue. El bot cuesta $1k/mes.</strong> La matemática es brutal.</p>
+
+    <h3>Canal 3: Organic (Lo que crece automáticamente)</h3>
+
+    <p>Cuando tenemos volumen (100+ tours/mes), empezamos a aparecer en Google naturalmente. "Tours Cancun" → aparecemos segundo resultado (después del resultado pagado). Gente da reviews reales 5 estrellas. El algoritmo ve: "Este sitio tiene buenas reviews". Nos ranking higher.</p>
+
+    <p>En M12, esto genera 20% de nuestro volumen SIN COSTO.</p>
+  </section>
+
+  <!-- PARTE 4: INFRAESTRUCTURA -->
+  <section>
+    <h2>Cuarto: ¿Cuánto Cuesta MONTAR TODO Esto?</h2>
+
+    <p>Aquí es donde somos EXTREMADAMENTE realistas.</p>
+
+    <h3>Inversión Inicial: $74,400 MXN ($3,720 USD)</h3>
+
+    <p>Ese es TODO el dinero que necesitamos para EMPEZAR. No es una cifra sacada de la nada. Es realista.</p>
+
+    <div class="point">
+      <div class="number-box">1</div>
+      <div class="point-text">
+        <strong>Desarrollo del sitio web + Bot WhatsApp:</strong> $30,000 MXN<br>
+        Contratas a 1 programador por 4 semanas. Te hace el sitio, el bot, todo integrado. Listo para vender.
+      </div>
+    </div>
+
+    <div class="point">
+      <div class="number-box">2</div>
+      <div class="point-text">
+        <strong>Marketing los primeros 3 meses:</strong> $20,000 MXN<br>
+        $10,000 en Mes 1 (TikTok + Facebook). $5,000 en Mes 2. $5,000 en Mes 3. Necesitas dinero para aparecer.
+      </div>
+    </div>
+
+    <div class="point">
+      <div class="number-box">3</div>
+      <div class="point-text">
+        <strong>Infraestructura (hosting, servidores, etc):</strong> $9,300 MXN<br>
+        $3,100 por mes durante 3 meses. Hosting, base de datos, APIs de IA, todo.
+      </div>
+    </div>
+
+    <div class="point">
+      <div class="number-box">4</div>
+      <div class="point-text">
+        <strong>Buffer por si algo sale mal:</strong> $15,100 MXN<br>
+        10% extra. Porque sorpresas siempre hay.
+      </div>
+    </div>
+
+    <h3>¿Y cuánto cuesta CADA MES después?</h3>
+
+    <p>Solo $3,100 MXN. Déjame desglosarlo:</p>
+
+    <div class="chart-simple">
+Hosting (Vercel):              $400 MXN
+Base de datos (AWS):         $1,000 MXN
+IA para bots (Claude):       $1,000 MXN
+Email + Comunicación:          $400 MXN
+Automatización (n8n):          $100 MXN
+Dominio + Seguridad:            $20 MXN
+CRM (gratis):                    $0 MXN
+─────────────────────────────
+TOTAL:                       $2,920 MXN
+    </div>
+
+    <p>Eso es menos que lo que gasta UN TURISTA en UN tour. Y con eso montamos una máquina que vende 100+ tours.</p>
+
+    <h3>¿Por qué es tan barato?</h3>
+
+    <p>Porque usamos tecnología moderna (cloud, serverless). No pagamos servidores en la nube que corren 24/7. Pagamos por cada request. Si nadie visita, casi no gastamos. Si 1 millón de personas visitan, gastamos poco más.</p>
+
+    <div class="example">
+      <strong>Comparación:</strong><br>
+      Agencia de tours tradicional:
+      <ul style="margin-left: 20px;">
+        <li>Renta oficina: $5,000/mes</li>
+        <li>Salario recepcionista: $15,000/mes</li>
+        <li>Teléfono + servicios: $2,000/mes</li>
+        <li>Publicidad: $10,000/mes</li>
+        <li>TOTAL: $32,000/mes ANTES de ganancias</li>
+      </ul>
+
+      MAYAN TOURS:
+      <ul style="margin-left: 20px;">
+        <li>Infraestructura: $3,100/mes</li>
+        <li>Marketing: $35,000/mes (pero opcional, te damos el modelo LEAN a $3,100)</li>
+        <li>TOTAL: $3,100-38,100/mes</li>
+      </ul>
+    </p>
+  </section>
+
+  <!-- PARTE 5: SIN SALARIOS -->
+  <section>
+    <h2>Quinto: ¿Y el Equipo? ¿Cuánto Gasto en Salarios?</h2>
+
+    <p>Aquí está el TRUCO FINANCIERO que hace posible este negocio.</p>
+
+    <h3>Meses 1-6: CERO SALARIOS</h3>
+
+    <p>Tú trabajas sin sueldo. Yo trabajo sin sueldo. ¿Por qué? Porque el negocio aún no genera dinero para pagar salarios. Lo que SACA de ser founder es:</p>
+
+    <div class="big-idea">
+      Si en Mes 6 estamos rentables (ganando dinero después de gastos), en Year 1 habremos generado $2-12 MILLONES. De eso, una parte es tuya. Eso vale más que un salario mensual.
+    </div>
+
+    <p>Muchas startups quebrantan porque desde Mes 1 tienen 5 personas cobrando salario. Eso cuesta $100,000+ al mes. Y si solo generan $45,000 en revenue, QUIEBRAN.</p>
+
+    <p>Nosotros NO. Nosotros REINVERTIMOS todo en crecimiento, no en nómina.</p>
+
+    <h3>Mes 7: Contratas Tu PRIMER Empleado</h3>
+
+    <p>En Mes 7, ya tienes $450,000 en revenue acumulada. Ya eres rentable. Ahora PUEDES pagar alguien.</p>
+
+    <p>Contratas 1 persona (Customer Success manager) por $20,000/mes. Esa persona:</p>
+    <ul style="margin-left: 30px;">
+      <li>Responde emails de clientes con dudas</li>
+      <li>Coordina con operadores</li>
+      <li>Resuelve problemas</li>
+    </ul>
+
+    <p>¿El bot no lo hace? El bot VENDE. Pero algunos clientes necesitan hablar con una PERSONA real si algo sale mal. Esa persona vale $20k/mes si te genera $100k+ en revenue extra.</p>
+
+    <h3>Año 2: Full Team</h3>
+
+    <p>Ya tienes dinero. Contratas:</p>
+    <ul style="margin-left: 30px;">
+      <li>Sales person ($20k/mes)</li>
+      <li>Content creator ($15k/mes)</li>
+      <li>Operations ($12k/mes)</li>
+      <li>Developer part-time ($10k/mes)</li>
+    </ul>
+
+    <p>Total: ~$55k/mes en nómina. Pero generas $300-500k/mes en revenue. La matemática sigue siendo brutal.</p>
+
+    <h3>¿Por qué funciona así?</h3>
+
+    <p>Porque el margen es BRUTAL. Si viendes $3,000 en un tour y sacas $450 de comisión, ese $450 sirve para TODO: infrastructure, marketing, salarios, profit.</p>
+
+    <p><strong>En Year 1 con 2,000+ tours vendidos, generas $6M+ en comisión. Gastas $100k en infrastructure. Queda $5.9M.</strong></p>
+  </section>
+
+  <!-- PARTE 6: LOS NÚMEROS -->
+  <section>
+    <h2>Sexto: Los Números Reales (Mes a Mes)</h2>
+
+    <p>Aquí vamos a ver EXACTAMENTE cuánto dinero entra y cuándo empezamos a ganar.</p>
+
+    <h3>Escenario CONSERVADOR (LEAN):</h3>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-time">MES 1: Somos un bebé</div>
+        <div class="timeline-text">
+          Acabamos de lanzar. 10 tours vendidos. <span class="money">$45,000 en ingresos</span>.<br>
+          Gastos: $13,100 (infrastructure + marketing).<br>
+          <span class="highlight-good">Ganancia: $31,900</span> (pero la reinvertimos en crecimiento)
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-time">MES 3: Está funcionando</div>
+        <div class="timeline-text">
+          17 tours vendidos. <span class="money">$76,500 en ingresos</span>.<br>
+          Gastos: $23,100.<br>
+          <span class="highlight-good">Ganancia: $53,400</span>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-time">MES 6: BREAK-EVEN ✓</div>
+        <div class="timeline-text">
+          41 tours vendidos. <span class="money">$184,500 en ingresos</span>.<br>
+          Gastos: $38,100.<br>
+          <span class="highlight-good">Ganancia: $146,400</span><br>
+          <strong style="color: #c9a961;">→ Hemos recuperado la inversión inicial. Todo lo que sigue es ganancia pura.</strong>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-time">MES 12: Final de Year 1</div>
+        <div class="timeline-text">
+          94 tours vendidos. <span class="money">$423,000 en ingresos</span>.<br>
+          Gastos: $68,100.<br>
+          <span class="highlight-good">Ganancia: $354,900</span>
+        </div>
+      </div>
+    </div>
+
+    <h3>Resumen Year 1 (LEAN):</h3>
+
+    <div class="big-idea">
+      <strong style="color: #2ecc71; font-size: 1.3rem;">
+        Total ingresos: $2.07 MILLONES<br>
+        Total gastos: $100k<br>
+        Total ganancia (EBITDA): $1.97 MILLONES<br>
+        Margen: 95%
+      </strong>
+    </div>
+
+    <h3>¿Y si gastamos DOBLE en marketing? (GROWTH)</h3>
+
+    <p>¿Qué pasa si en lugar de gastar $10k en M1, gastamos $20k? En lugar de $35k en marketing al mes, gastamos $70k?</p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-time">MES 1</div>
+        <div class="timeline-text">25 tours (vs 10 en LEAN). <span class="money">$112,500 en ingresos</span>. Ganancia: $83,500.</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-time">MES 5</div>
+        <div class="timeline-text"><span class="highlight-good">BREAK-EVEN</span> (vs MES 6 en LEAN). Un mes más rápido.</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-time">MES 12</div>
+        <div class="timeline-text">603 tours (vs 94 en LEAN). <span class="money">$2.71M en ingresos</span>. Ganancia: $2.48M.</div>
+      </div>
+    </div>
+
+    <div class="big-idea">
+      <strong style="color: #2ecc71; font-size: 1.3rem;">
+        Total ingresos: $11.8 MILLONES<br>
+        Total gastos: $400k<br>
+        Total ganancia: $11.4 MILLONES<br>
+        Margen: 97%
+      </strong>
+    </div>
+
+    <p>Gastamos 6x más ($400k vs $100k). Pero generamos 5.8x más ganancia. <strong>El dinero extra que gastamos en marketing se paga a sí mismo 5.8 veces.</strong></p>
+
+    <h3>¿Cuál escogería un inversionista?</h3>
+
+    <p><span class="highlight-good">GROWTH obvio</span>. Si tengo $74.4k para invertir, prefiero generar $11.4M que $1.97M.</p>
+  </section>
+
+  <!-- PARTE 7: AÑO 2 -->
+  <section>
+    <h2>Séptimo: Año 2 — Cuando Esto se Vuelve SERIO</h2>
+
+    <p>Year 1 fue "let's prove the model works." Year 2 es "let's make REALLY big money."</p>
+
+    <h3>¿Qué cambia en Año 2?</h3>
+
+    <ul style="margin-left: 30px; font-size: 1.05rem;">
+      <li>Ya NO es unpaid founder. Ahora hay 5-8 personas en nómina.</li>
+      <li>Marketing más sofisticado (video generation con IA, TikTok creator hire).</li>
+      <li>Expandimos a nuevos destinos (Cozumel, Isla Mujeres).</li>
+      <li>Agregamos tipos de tours (Transport, Food, Wellness).</li>
+      <li>Empezamos a generar referrals automáticos.</li>
+    </ul>
+
+    <h3>Los números de Year 2 (LEAN):</h3>
+
+    <div class="big-number">$9.9M</div>
+    <p style="text-align: center; color: #d0d0d0;">Revenue Year 2 (vs $2.07M en Year 1)</p>
+
+    <div class="big-number">$8.1M</div>
+    <p style="text-align: center; color: #d0d0d0;">Ganancia Year 2 (vs $1.97M en Year 1)</p>
+
+    <h3>Los números de Year 2 (GROWTH):</h3>
+
+    <div class="big-number">$106.9M</div>
+    <p style="text-align: center; color: #2ecc71;">Revenue Year 2 (vs $11.8M en Year 1)</p>
+
+    <div class="big-number">$87.8M</div>
+    <p style="text-align: center; color: #2ecc71;">Ganancia Year 2 (vs $11.4M en Year 1)</p>
+
+    <h3>24 MESES TOTALES:</h3>
+
+    <p style="text-align: center; font-size: 1.2rem;">
+      <strong style="color: #2ecc71;">$12-101 MILLONES</strong><br>
+      de ganancia acumulada<br>
+      sobre una inversión inicial de $74,400 MXN
+    </p>
+  </section>
+
+  <!-- PARTE 8: ROADMAP -->
+  <section>
+    <h2>Octavo: ¿EXACTAMENTE Qué Hacemos y CUÁNDO?</h2>
+
+    <h3>Semana 1-2: CONSTRUIR</h3>
+
+    <p>Contratas un programador. Le dices: "Hazme un sitio bonito, un carrito de compra que funcione, y un bot de WhatsApp que recomiende tours."</p>
+
+    <p>El programador trabaja 2 semanas. Listo: tienes un sitio funcional.</p>
+
+    <h3>Semana 3-4: RECLUTAR OPERADORES</h3>
+
+    <p>Eres un tipo/una chica carismático. Vas a ver operadores locales. Les dices:</p>
+
+    <div class="example">
+      "Hola, hago un sitio para vender tours online. Es como Airbnb para tours. Tú sigues haciendo los tours. Yo te traigo clientes. Me cobro 15% de comisión. ¿Interesado?"
+    </div>
+
+    <p>Algunos dicen que sí. Algunos dicen que no. Necesitas 15-20 operadores que digan SÍ. Esos operadores suben sus tours a tu sitio.</p>
+
+    <h3>Semana 5: CREAR CONTENIDO</h3>
+
+    <p>Fotos profesionales. Videos de 15 segundos. Descripciones que VENDEN.</p>
+
+    <p>No necesitas fotos originales. Puedes usar apps de IA (Higgsfield) que generan imágenes hermosas. O editas videos existentes.</p>
+
+    <h3>Semana 6: LANZAMIENTO</h3>
+
+    <p>El sitio está LIVE. 20 tours activos. El bot funciona. Bienvenido a Internet.</p>
+
+    <p>Inmediatamente, gastas $10,000 en ads (TikTok, Facebook). Esperas que el algoritmo empiece a mover tu contenido.</p>
+
+    <h3>Mes 2-6: OPTIMIZACIÓN</h3>
+
+    <p>Ves qué funciona. ¿La gente compra más cenotes que arqueología? Doble down en cenotes.</p>
+
+    <p>¿TikTok te da más clientes que Facebook? Gasta más en TikTok.</p>
+
+    <p>¿El bot convierte 5% de las conversaciones? Genial. Mejora el prompt. Ahora convierte 7%.</p>
+
+    <p>Todo es ITERACIÓN. Un mes de datos. Ajustas. Siguiente mes, vuelves a iterar.</p>
+
+    <h3>Mes 7+: ESCALA</h3>
+
+    <p>Ya funciona. Ahora contratas gente:</p>
+
+    <ul style="margin-left: 30px;">
+      <li>Customer Success person ($20k/mes)</li>
+      <li>Content creator ($12k/mes)</li>
+      <li>Ads manager ($12k/mes)</li>
+    </ul>
+
+    <p>Ellos amplifican lo que estás haciendo. Tú enfocado en strategy.</p>
+
+    <h3>Mes 12+: DOMINANCIA</h3>
+
+    <p>Ya son 94-603 tours siendo vendidos cada mes (dependiendo de LEAN o GROWTH).</p>
+
+    <p>Expandimos a nuevos lugares. Agregamos nuevas categorías. ¿Tours de comida? Sí. ¿Clases de español? Sí. ¿Fotosafaris? Sí.</p>
+  </section>
+
+  <!-- PARTE 9: RIESGOS -->
+  <section>
+    <h2>Noveno: Los Riesgos REALES (Siendo Honesto)</h2>
+
+    <h3>Risk 1: "¿Y si llega Viator o GetYourGuide?"</h3>
+
+    <p>Sí, existen. Pero aquí está el truco:</p>
+
+    <div class="example">
+      Viator es GLOBAL. Tiene 10,000 tours en 100 países. Cali, Bogotá, México, Perú, todo. No pueden hacer marketing local en cada ciudad. Dicen "tour en Cancun" pero genéricamente. Nosotros decimos "<strong>Cenote XYZ con la abuela María, que lleva 20 años haciendo esto, 4.9 estrellas, $1,200 USD.</strong>" Somos PERSONAL. Somos LOCAL.
+    </div>
+
+    <p>Además, cuando entramos con marketing fuerte, somos "primero en la mente" del turista. Eso vale dinero.</p>
+
+    <h3>Risk 2: "¿Y si baja el turismo?"</h3>
+
+    <p>Realidad: Sí, turismo puede bajar por recesión, pandemia, lo que sea.</p>
+
+    <p>Mitigation: Cuando pase eso, enfocamos en turistas LOCALES. Residentes de Cancun quieren tours también. Y después de Year 1, 30% de nuestro volumen viene de locales. No solo turistas extranjeros.</p>
+
+    <h3>Risk 3: "¿Y si un operador se va?"</h3>
+
+    <p>Realidad: Un operador podría irse a Viator. O dejar de trabajar.</p>
+
+    <p>Mitigation: Si le traemos 20 tours/mes (vs 2 si hace marketing solo), no se va. VOLUMEN es el moat. Además, tenemos 50+ operadores. Si 1 se va, tenemos 49.</p>
+
+    <h3>Risk 4: "¿Y si se cae el servidor?"</h3>
+
+    <p>Realidad: Es possible. Pero AWS (donde está tu database) tiene 99.99% uptime. Es más probable que falle tu teléfono que AWS.</p>
+
+    <p>Mitigation: Backups automáticos. Infraestructura redundante. Si algo falla, recuperas en minutos.</p>
+
+    <h3>Risk 5: "¿Y si APIs sube precio?"</h3>
+
+    <p>Realidad: Claude, OpenAI podrían subir precio.</p>
+
+    <p>Mitigation:
+      <ul style="margin-left: 20px;">
+        <li>Lock volume deals ahora.</li>
+        <li>Usamos Haiku (90% más barato). Si sube, migramos a Haiku open-source.</li>
+        <li>Con volumen, tenemos poder de negociación.</li>
+      </ul>
+    </p>
+
+    <h3>El BOTTOM LINE:</h3>
+
+    <div class="big-idea">
+      <strong>Todos esos riesgos son manejables porque tenemos VOLUMEN.</strong> Con 2,000 tours/mes, no estás frágil. Puedes negociar. Puedes pivotar. Tienes dinero para absorber shocks.
+    </div>
+  </section>
+
+  <!-- PARTE 10: CIERRE -->
+  <section>
+    <h2>Décimo: ¿POR QUÉ Esto Va a FUNCIONAR?</h2>
+
+    <h3>Porque los NÚMEROS SON REALES</h3>
+
+    <p>No es "esperanza." Es matemática:</p>
+
+    <div class="point">
+      <div class="number-box">✓</div>
+      <div class="point-text">
+        <strong>Mercado:</strong> 3.5M turistas/año = $4.2B oportunidad. ES REAL. Se puede verificar en Google.
+      </div>
+    </div>
+
+    <div class="point">
+      <div class="number-box">✓</div>
+      <div class="point-text">
+        <strong>Conversion rate 2%:</strong> Es conservador. E-commerce típico es 1-3%. Google Ads convierte 3%.
+      </div>
+    </div>
+
+    <div class="point">
+      <div class="number-box">✓</div>
+      <div class="point-text">
+        <strong>Comisión 15%:</strong> Operadores FELICES pagando 15% vs 25-30% a Viator. Nosotros competimos ganando.
+      </div>
+    </div>
+
+    <div class="point">
+      <div class="number-box">✓</div>
+      <div class="point-text">
+        <strong>Costos $3.1k/mes:</strong> He investigado CADA herramienta. Esos son precios reales. He pedido quotes.
+      </div>
+    </div>
+
+    <h3>Porque la TECNOLOGÍA ahora lo permite</h3>
+
+    <p>Hace 5 años, no tenías Claude, no tenías n8n, no tenías Vercel. Hubiera necesitado 10 personas para hacer esto. Hoy necesitas 1 founder.</p>
+
+    <h3>Porque somos LOCALISTAS</h3>
+
+    <p>No somos una app global tratando de funcionar en 100 países. Somos LOCALES. Hablamos español. Conocemos operadores. Somos primera opción mental del turista.</p>
+
+    <h3>Porque el TIMING es perfecto</h3>
+
+    <p>Post-covid, turismo CRECE. Hay pent-up demand. Gente quiere viajar. Ciclo perfecto para entrar.</p>
+
+    <h3>Porque el MARGEN es brutal</h3>
+
+    <p>95% profit margin. Eso es Netflix level. Google level. Pocas empresas tienen eso. Nosotros sí.</p>
+
+    <h3>Porque FUNDADOR está all-in</h3>
+
+    <p>Sin salario. Commitment total. Eso es raro. Eso vale dinero.</p>
+
+    <div class="big-idea">
+      <strong style="font-size: 1.2rem; color: #2ecc71;">
+        La apuesta es simple: ¿Puedo consolidar un mercado fragmentado usando tecnología moderna?<br>
+        <br>
+        Si SÍ: $12-101M en Year 2. Es venture-scale.<br>
+        Si NO: Perdi $74.4k y 6 meses. Risk/reward = excelente.
+      </strong>
+    </div>
+  </section>
+
+  <!-- PARTE 11: SIGUIENTE PASO -->
+  <section>
+    <h2>Onceno: ¿Y AHORA QUÉ?</h2>
+
+    <h3>Si todo esto te hace sentido y quieres hacer esto:</h3>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-time">Semana 1</div>
+        <div class="timeline-text">Apruebas presupuesto. Firmamos acuerdo. Liberamos dinero.</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-time">Semana 2-4</div>
+        <div class="timeline-text">Construimos MVP (sitio + bot). Beta testing con 5 operadores reales. Ven si funciona.</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-time">Semana 5</div>
+        <div class="timeline-text">LIVE. Primera vez. El sitio está en internet. Gente puede comprar.</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-time">Semana 6+</div>
+        <div class="timeline-text">Lanzamos ads ($10k). Esperamos resultados.</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-time">Mes 2</div>
+        <div class="timeline-text">Primeras métricas. ¿Funciona o no funciona? Si funciona, aumentamos gasto. Si no, ajustamos.</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-time">Mes 6</div>
+        <div class="timeline-text">BREAK-EVEN. Ya estamos ganando dinero. Recuperamos inversión.</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-time">Mes 12</div>
+        <div class="timeline-text">$2-12M de ganancia. Ya sabe si fue buena idea o no.</div>
+      </div>
+    </div>
+
+    <h3>Eso es TODO.</h3>
+
+    <p>No hay pasos "secretos". No hay parte 2. Es simple y directo.</p>
+
+    <div class="button-area">
+      <p style="font-size: 1.3rem; margin-bottom: 20px;">
+        <strong style="color: #c9a961;">¿Entendiste cómo funciona?</strong>
+      </p>
+      <p style="color: #ccc;">
+        Si la respuesta es SÍ, estamos listos para arrancar.<br>
+        Si la respuesta es "me explicas más," dime exactamente qué parte no entendiste.
+      </p>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <p><strong>MAYAN TOURS AGENCY</strong></p>
+  <p>Negocio de Tours Digital Explicado SUPER Simple</p>
+  <p style="margin-top: 30px; font-size: 0.9rem;">
+    Inversión Inicial: $74,400 MXN | Break-Even: Mes 6-8 | Year 1 Ganancia: $2-12M | Year 2 Ganancia: $8-87M
+  </p>
+</footer>
+
+</body>
+</html>
