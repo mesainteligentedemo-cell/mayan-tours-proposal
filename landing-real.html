@@ -1,0 +1,1156 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MAYAN TOURS — La Oportunidad que NO Ves</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Space Grotesk', sans-serif;
+      background: linear-gradient(180deg, #0a1929 0%, #051a2e 100%);
+      color: #f0f4f8;
+      line-height: 1.8;
+      overflow-x: hidden;
+    }
+
+    :root {
+      --turq: #06b6d4;
+      --teal: #0891b2;
+      --sand: #e8d4b8;
+      --deep: #0a1929;
+      --light: #f0f4f8;
+    }
+
+    .fade-in { opacity: 0; transform: translateY(30px); animation: fadeInUp 0.8s ease forwards; }
+    @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: linear-gradient(180deg, rgba(10,25,41,.95), transparent);
+      padding: 20px 60px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(6,182,212,.1);
+    }
+
+    .logo {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--turq);
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+    }
+
+    nav a {
+      color: #99b4c8;
+      text-decoration: none;
+      margin: 0 30px;
+      font-size: 13px;
+      letter-spacing: 0.1em;
+      transition: color 0.3s;
+    }
+
+    nav a:hover { color: var(--turq); }
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      padding-top: 80px;
+      background: linear-gradient(135deg, rgba(6,182,212,.05), rgba(8,145,178,.03));
+      overflow: hidden;
+    }
+
+    .hero::before { content: '🌴'; position: absolute; font-size: 200px; opacity: 0.08; top: 10%; right: 5%; animation: float 6s ease-in-out infinite; }
+    .hero::after { content: '🌊'; position: absolute; font-size: 150px; opacity: 0.08; bottom: 10%; left: 5%; animation: float 8s ease-in-out infinite; }
+    @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(20px); } }
+
+    .hero-content { position: relative; z-index: 2; max-width: 950px; }
+    .hero h1 {
+      font-family: 'Instrument Serif', serif;
+      font-size: clamp(42px, 7vw, 88px);
+      font-weight: 300;
+      font-style: italic;
+      background: linear-gradient(135deg, var(--turq), var(--sand));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 20px;
+      line-height: 1;
+    }
+
+    .hero .subtitle {
+      font-size: 20px;
+      color: var(--turq);
+      margin-bottom: 30px;
+      font-weight: 300;
+    }
+
+    .hero p {
+      font-size: 15px;
+      color: #a8c5d8;
+      margin-bottom: 40px;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.8;
+    }
+
+    .cta-button {
+      display: inline-block;
+      padding: 16px 48px;
+      background: linear-gradient(135deg, var(--turq), var(--teal));
+      color: var(--deep);
+      text-decoration: none;
+      border-radius: 50px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      border: none;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 13px;
+      text-transform: uppercase;
+    }
+
+    .cta-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 20px 50px rgba(6,182,212,.3);
+    }
+
+    section {
+      padding: 100px 60px;
+      position: relative;
+    }
+
+    section h2 {
+      font-family: 'Instrument Serif', serif;
+      font-size: clamp(32px, 5vw, 64px);
+      font-weight: 300;
+      color: var(--turq);
+      margin-bottom: 50px;
+      text-align: center;
+      line-height: 1.1;
+    }
+
+    .section-intro {
+      background: rgba(15,35,60,.4);
+      padding: 40px;
+      border-radius: 15px;
+      border: 1px solid rgba(6,182,212,.15);
+      margin-bottom: 60px;
+      color: #a8c5d8;
+      font-size: 15px;
+      line-height: 1.9;
+      backdrop-filter: blur(10px);
+    }
+
+    .section-intro strong { color: var(--turq); }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 40px;
+      margin-top: 60px;
+    }
+
+    .card {
+      background: rgba(15,35,60,.4);
+      padding: 40px;
+      border-radius: 15px;
+      border: 1px solid rgba(6,182,212,.15);
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+    }
+
+    .card:hover {
+      border-color: var(--turq);
+      background: rgba(6,182,212,.1);
+      transform: translateY(-10px);
+      box-shadow: 0 20px 60px rgba(6,182,212,.15);
+    }
+
+    .card h3 {
+      font-size: 18px;
+      color: var(--turq);
+      margin-bottom: 15px;
+      font-weight: 600;
+    }
+
+    .card p {
+      color: #a8c5d8;
+      font-size: 14px;
+      line-height: 1.8;
+    }
+
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      margin-top: 60px;
+    }
+
+    .stat-box {
+      background: linear-gradient(135deg, rgba(6,182,212,.12), rgba(8,145,178,.06));
+      padding: 45px;
+      border-radius: 15px;
+      border: 1px solid rgba(6,182,212,.25);
+      text-align: center;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+    }
+
+    .stat-box:hover {
+      transform: scale(1.05);
+      border-color: var(--turq);
+    }
+
+    .stat-number {
+      font-family: 'Instrument Serif', serif;
+      font-size: 48px;
+      font-weight: 300;
+      color: var(--turq);
+      margin-bottom: 15px;
+    }
+
+    .stat-label {
+      font-size: 13px;
+      color: var(--sand);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 12px;
+      font-weight: 600;
+    }
+
+    .stat-desc {
+      font-size: 13px;
+      color: #7a9ab8;
+      line-height: 1.7;
+    }
+
+    .highlight-box {
+      background: linear-gradient(135deg, rgba(245,158,11,.1), rgba(6,182,212,.05));
+      border: 2px solid rgba(245,158,11,.3);
+      padding: 35px;
+      border-radius: 12px;
+      margin: 40px 0;
+      color: #a8c5d8;
+      font-size: 15px;
+      line-height: 1.9;
+    }
+
+    .highlight-box strong { color: #f59e0b; }
+
+    .money-box {
+      background: rgba(6,182,212,.1);
+      padding: 30px;
+      border-radius: 12px;
+      border: 1px solid rgba(6,182,212,.2);
+      text-align: center;
+      margin: 30px 0;
+    }
+
+    .money-label {
+      color: #7a9ab8;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 10px;
+    }
+
+    .money-amount {
+      font-family: 'Instrument Serif', serif;
+      font-size: 42px;
+      font-weight: 300;
+      color: var(--turq);
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
+      margin-top: 60px;
+      align-items: center;
+    }
+
+    .two-col-text h3 {
+      font-size: 24px;
+      color: var(--turq);
+      margin-bottom: 25px;
+      line-height: 1.3;
+    }
+
+    .two-col-text p {
+      color: #a8c5d8;
+      margin-bottom: 20px;
+      font-size: 15px;
+      line-height: 1.8;
+    }
+
+    .two-col-text ul {
+      list-style: none;
+      color: #a8c5d8;
+    }
+
+    .two-col-text li {
+      margin-bottom: 15px;
+      padding-left: 30px;
+      position: relative;
+      font-size: 14px;
+    }
+
+    .two-col-text li:before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: var(--turq);
+      font-weight: bold;
+    }
+
+    .costs-section { background: linear-gradient(135deg, rgba(8,145,178,.08), rgba(6,182,212,.03)); border: 1px solid rgba(6,182,212,.15); }
+
+    .cost-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 25px;
+      margin-top: 50px;
+    }
+
+    .cost-item {
+      background: rgba(15,35,60,.5);
+      padding: 30px;
+      border-radius: 12px;
+      border: 1px solid rgba(6,182,212,.15);
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    .cost-item:hover {
+      border-color: var(--turq);
+      background: rgba(6,182,212,.1);
+      transform: translateY(-8px);
+    }
+
+    .cost-label {
+      font-size: 12px;
+      color: var(--sand);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 12px;
+      font-weight: 600;
+    }
+
+    .cost-amount {
+      font-family: 'Instrument Serif', serif;
+      font-size: 32px;
+      font-weight: 300;
+      color: var(--turq);
+      margin-bottom: 10px;
+    }
+
+    .cost-desc {
+      font-size: 12px;
+      color: #7a9ab8;
+      line-height: 1.6;
+    }
+
+    .tabs {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      margin: 40px 0;
+      flex-wrap: wrap;
+    }
+
+    .tab-btn {
+      padding: 12px 30px;
+      background: rgba(15,35,60,.4);
+      border: 1px solid rgba(6,182,212,.2);
+      color: #a8c5d8;
+      cursor: pointer;
+      border-radius: 30px;
+      transition: all 0.3s;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-family: 'Space Grotesk', sans-serif;
+      backdrop-filter: blur(10px);
+    }
+
+    .tab-btn:hover, .tab-btn.active {
+      background: var(--turq);
+      color: var(--deep);
+      border-color: var(--turq);
+    }
+
+    .tab-content { display: none; }
+    .tab-content.active { display: block; animation: fadeInUp 0.5s ease; }
+
+    .chart-container {
+      background: rgba(15,35,60,.4);
+      padding: 40px;
+      border-radius: 12px;
+      border: 1px solid rgba(6,182,212,.15);
+      margin-top: 40px;
+      position: relative;
+      height: 400px;
+      backdrop-filter: blur(10px);
+    }
+
+    .timeline { position: relative; padding: 40px 0; margin-top: 60px; }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(180deg, var(--turq), transparent);
+      transform: translateX(-50%);
+    }
+
+    .timeline-item {
+      margin-bottom: 50px;
+      display: flex;
+      gap: 60px;
+      align-items: flex-start;
+    }
+
+    .timeline-item:nth-child(odd) { flex-direction: row-reverse; }
+
+    .timeline-content {
+      flex: 1;
+      background: rgba(15,35,60,.4);
+      padding: 30px;
+      border-radius: 12px;
+      border: 1px solid rgba(6,182,212,.15);
+      transition: all 0.3s;
+      backdrop-filter: blur(10px);
+    }
+
+    .timeline-content:hover {
+      border-color: var(--turq);
+      background: rgba(6,182,212,.08);
+    }
+
+    .timeline-dot {
+      width: 40px;
+      height: 40px;
+      background: var(--turq);
+      border-radius: 50%;
+      flex-shrink: 0;
+      margin-top: 10px;
+    }
+
+    .timeline-time {
+      font-size: 14px;
+      color: var(--turq);
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .timeline-desc {
+      font-size: 14px;
+      color: #a8c5d8;
+      line-height: 1.7;
+    }
+
+    footer {
+      background: linear-gradient(180deg, transparent, rgba(0,0,0,.3));
+      padding: 80px 60px 40px;
+      text-align: center;
+      border-top: 1px solid rgba(6,182,212,.1);
+    }
+
+    footer h3 {
+      font-family: 'Instrument Serif', serif;
+      font-size: 48px;
+      font-weight: 300;
+      color: var(--turq);
+      margin-bottom: 20px;
+    }
+
+    footer p {
+      color: #7a9ab8;
+      margin-bottom: 30px;
+      font-size: 15px;
+    }
+
+    .final-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 30px;
+      margin: 60px 0;
+    }
+
+    .final-box {
+      background: rgba(6,182,212,.1);
+      padding: 30px;
+      border-radius: 12px;
+      border: 1px solid rgba(6,182,212,.2);
+    }
+
+    .final-box strong {
+      display: block;
+      font-size: 36px;
+      color: var(--turq);
+      margin-bottom: 10px;
+    }
+
+    .final-box span {
+      font-size: 12px;
+      color: #7a9ab8;
+    }
+
+    @media (max-width: 768px) {
+      section { padding: 80px 30px; }
+      header { padding: 15px 30px; }
+      nav a { margin: 0 15px; font-size: 11px; }
+      .two-col { grid-template-columns: 1fr; gap: 30px; }
+      .timeline::before { left: 20px; }
+      .timeline-item { flex-direction: column !important; gap: 20px; }
+      .timeline-dot { margin-left: 30px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="logo">🌴 MAYAN TOURS</div>
+  <nav>
+    <a href="#mercado">El Mercado</a>
+    <a href="#negocio">El Negocio</a>
+    <a href="#costos">Costos</a>
+    <a href="#numeros">Números</a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <h1>El Caribe Mexicano Necesita una Plataforma Así</h1>
+    <p class="subtitle">Y nosotros ya la tenemos lista</p>
+    <p>Quintana Roo mueve <strong>$400 mil millones pesos al año</strong> en turismo.<br>
+       28 millones de turistas. Nosotros ya tenemos el sistema.<br>
+       Tú pones el capital. Nosotros ponemos el resto.</p>
+    <button class="cta-button" onclick="document.getElementById('mercado').scrollIntoView()">Ver la Oportunidad →</button>
+  </div>
+</section>
+
+<!-- MERCADO -->
+<section id="mercado">
+  <h2>El Mercado: Datos Que No Mienten</h2>
+
+  <div class="section-intro">
+    <strong>Quintana Roo es el corazón turístico de México.</strong> No es exageración. Mientras otros estados se pelea por migajas, aquí llegan casi 28 millones de turistas al año dispuestos a gastar dinero. El problema es que la mayoría de esos turistas NO saben dónde ir, qué hacer, y pagan precios inflados a intermediarios que no merecen la comisión. Eso es lo que vamos a cambiar.
+  </div>
+
+  <div class="stat-grid">
+    <div class="stat-box fade-in">
+      <div class="stat-number">28M</div>
+      <div class="stat-label">Turistas/Año</div>
+      <div class="stat-desc">Quintana Roo 2025. Datos SEDETUR oficial. Es MÁS gente que la población de Argentina visitando cada año el estado.</div>
+    </div>
+
+    <div class="stat-box fade-in">
+      <div class="stat-number">$400B</div>
+      <div class="stat-label">Derrama Anual</div>
+      <div class="stat-desc">$400 mil millones de pesos que dejan los turistas. Equivale a 1/4 del PIB nacional en turismo EN UN SOLO ESTADO.</div>
+    </div>
+
+    <div class="stat-box fade-in">
+      <div class="stat-number">$79.9B</div>
+      <div class="stat-label">Mercado Certificado</div>
+      <div class="stat-desc">Mercado turístico oficial de Quintana Roo 2024-2025 según SECTUR. 25% de TODO el turismo de México.</div>
+    </div>
+
+    <div class="stat-box fade-in">
+      <div class="stat-number">$18,680</div>
+      <div class="stat-label">Gasto Promedio</div>
+      <div class="stat-desc">Cada turista gasta en promedio $934 USD (≈ $18,680 MXN). Algunos gastan mucho más.</div>
+    </div>
+  </div>
+
+  <div class="highlight-box">
+    <strong>Traducción:</strong> Si capturas solo el 1% de ese flujo de turistas en una plataforma de tours, y les vendes a precio justo, estamos hablando de decenas de millones en revenue el primer año. Y ese 1% es REALISTA, porque la mayoría de turistas buscan algo mejor que lo que hay hoy.
+  </div>
+</section>
+
+<!-- DESTINOS -->
+<section>
+  <h2>¿A Dónde Van Esos 28M de Turistas?</h2>
+
+  <div class="section-intro">
+    Aquí está el punto clave: <strong>los turistas no saben qué hacer</strong>. Llegan a Cancún, Playa del Carmen, Tulum... y o se quedan en el resort (pagando 3x más por mediocre), o usan apps caóticas que no curan bien el contenido. Nosotros hacemos una plataforma donde se pueden encontrar los tours más chidos, más seguros, más baratos, todo verificado.
+  </div>
+
+  <div class="grid-2">
+    <div class="card fade-in">
+      <h3>🏖️ Cancún + Riviera Maya</h3>
+      <p><strong>13+ millones/año</strong><br>
+         Playas, parques acuáticos, snorkel, cenotes. La mayoría de turistas NO encuentra opciones buenas. Usan Facebook groups desorganizadas o pagan 2-3x a operadores turísticos que no valen.</p>
+    </div>
+
+    <div class="card fade-in">
+      <h3>🏛️ Tulum + Costa Maya</h3>
+      <p><strong>4+ millones/año</strong><br>
+         Ruinas mayas, playas vírgenes, restaurantes caros. Aquí el turista SÍ tiene dinero pero NO tiene info clara. Ese es nuestro mercado.</p>
+    </div>
+
+    <div class="card fade-in">
+      <h3>🌴 Isla Mujeres + Cozumel</h3>
+      <p><strong>2+ millones/año</strong><br>
+         Buceo, snorkel premium, vida marina. Los operadores locales ODIAN a los intermediarios y buscan conexión directa. Nosotros somos ese puente.</p>
+    </div>
+
+    <div class="card fade-in">
+      <h3>🦆 Reservas + Ecoturismo</h3>
+      <p><strong>3+ millones/año</strong><br>
+         Biósfera de Sian Ka'an, lagunas, selva. El turista ecológico es el que MÁS gasta y el que MENOS opciones claras tiene. Mercado virgen.</p>
+    </div>
+  </div>
+
+  <div class="highlight-box">
+    <strong>Resumido:</strong> En Quintana Roo NO hay una plataforma decente que centralice tours, las califique, las verifique, y conecte turista ↔ operador sin intermediarios. Nosotros hacemos eso.
+  </div>
+</section>
+
+<!-- NEGOCIO -->
+<section id="negocio">
+  <h2>Así Es Como Gana Dinero MAYAN TOURS</h2>
+
+  <div class="section-intro">
+    <strong>Modelo simple:</strong> Turista busca tour → encontramos operador → cobramos 15% comisión. El turista paga precio justo, el operador gana sin intermediarios caros, nosotros nos llevamos comisión por la venta. Todos ganan.
+  </div>
+
+  <div class="two-col">
+    <div>
+      <div class="card" style="margin-bottom: 0;">
+        <h3>Revenue Streams</h3>
+        <ul>
+          <li><strong>15% comisión por venta</strong><br>
+              Promedio tour = $500-2000 MXN. Nuestro 15% = $75-300 MXN por venta</li>
+          <li><strong>Suscripción operadores</strong><br>
+              Operadores pagan $50-100/mes por estar en la plataforma</li>
+          <li><strong>Publicidad + featured listings</strong><br>
+              Tours destacados pagan extra por visibilidad</li>
+          <li><strong>Reviews + ratings premium</strong><br>
+              Operadores pueden pagar por boost de reviews</li>
+        </ul>
+      </div>
+    </div>
+
+    <div>
+      <div class="card" style="margin-bottom: 0;">
+        <h3>Por Qué Funciona Este Modelo</h3>
+        <ul>
+          <li><strong>Turistas:</strong> Pagan lo mismo, pero tienen opciones verificadas</li>
+          <li><strong>Operadores:</strong> Ganan MÁS porque no pierden 30-40% en intermediarios</li>
+          <li><strong>Nosotros:</strong> Cobramos 15% de cada venta. Sin costo de inventario.</li>
+          <li><strong>Escalable:</strong> Cada venta extra es PURA ganancia después del breakeven</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="highlight-box">
+    <strong>Comparación con competencia:</strong><br>
+    • <strong>Viator (TripAdvisor):</strong> cobra 25-30% comisión (predador)<br>
+    • <strong>GetYourGuide:</strong> cobra 20-25% (caro)<br>
+    • <strong>Facebook groups:</strong> sin estructura, sin confianza<br>
+    • <strong>Nosotros:</strong> 15% comisión + verificación + IA + bots 24/7 = LA opción que todos quieren
+  </div>
+</section>
+
+<!-- COSTOS -->
+<section id="costos" class="costs-section">
+  <h2>¿Cuánto Cuesta Armar Todo Esto?</h2>
+
+  <div class="section-intro">
+    Aquí está lo brutal: <strong>NO es tan caro como crees.</strong> Porque nosotros ya tenemos código, infraestructura, y APIs armadas. Tú pagas tools (hosting, APIs, marketing). Nosotros nos encargamos del desarrollo, operaciones, y scaling. Es un modelo de joint venture.
+  </div>
+
+  <h3 style="color: var(--turq); text-align: center; margin-top: 60px; margin-bottom: 40px; font-size: 18px;">📊 FASE 1: MES 1-3 (Lanzamiento + Primeras Ventas)</h3>
+
+  <div class="cost-grid">
+    <div class="cost-item fade-in">
+      <div class="cost-label">Dev MVP + Infraestructura</div>
+      <div class="cost-amount">$30k</div>
+      <div class="cost-desc">Frontend, backend, APIs de pagos. Nosotros lo hacemos. Pago único.</div>
+    </div>
+
+    <div class="cost-item fade-in">
+      <div class="cost-label">Vercel (Hosting Web)</div>
+      <div class="cost-amount">$400/mes</div>
+      <div class="cost-desc">Donde corre la plataforma. Escalable sin límite.</div>
+    </div>
+
+    <div class="cost-item fade-in">
+      <div class="cost-label">AWS (Database)</div>
+      <div class="cost-amount">$1,000/mes</div>
+      <div class="cost-desc">PostgreSQL con backups + failover. Así NO pierdes data.</div>
+    </div>
+
+    <div class="cost-item fade-in">
+      <div class="cost-label">Claude Code API</div>
+      <div class="cost-amount">$4,000</div>
+      <div class="cost-desc">$200 USD × 20. IA para descripciones, bots 24/7.</div>
+    </div>
+
+    <div class="cost-item fade-in">
+      <div class="cost-label">Higgsfield (IA Imágenes)</div>
+      <div class="cost-amount">$6,200</div>
+      <div class="cost-desc">$310 USD × 20. Generar fotos/videos de tours automático.</div>
+    </div>
+
+    <div class="cost-item fade-in">
+      <div class="cost-label">SendGrid + Twilio</div>
+      <div class="cost-amount">$800/mes</div>
+      <div class="cost-desc">Emails + WhatsApp API. Comunicación con turistas/operadores.</div>
+    </div>
+
+    <div class="cost-item fade-in">
+      <div class="cost-label">n8n Automation</div>
+      <div class="cost-amount">$600/mes</div>
+      <div class="cost-desc">Sincronización entre plataformas, webhooks, triggers.</div>
+    </div>
+
+    <div class="cost-item fade-in">
+      <div class="cost-label">Marketing (TikTok+Instagram)</div>
+      <div class="cost-amount">$15,000</div>
+      <div class="cost-desc">Ads iniciales para generar tráfico + growth inicial.</div>
+    </div>
+
+    <div class="cost-item fade-in">
+      <div class="cost-label">Dominio + Otros</div>
+      <div class="cost-amount">$500</div>
+      <div class="cost-desc">mayan-tours.mx, certificados SSL, misc.</div>
+    </div>
+  </div>
+
+  <div class="money-box">
+    <div class="money-label">TOTAL FASE 1 (Primeros 3 Meses)</div>
+    <div class="money-amount">$73,500 MXN</div>
+    <p style="color: #7a9ab8; margin-top: 10px;">Incluye dev, tools, y marketing inicial. Después baja a operaciones.</p>
+  </div>
+
+  <h3 style="color: var(--turq); text-align: center; margin-top: 80px; margin-bottom: 40px; font-size: 18px;">📊 FASE 2: MES 4+ (Operaciones + Escala)</h3>
+
+  <div class="cost-grid">
+    <div class="cost-item fade-in">
+      <div class="cost-label">Claude Code API</div>
+      <div class="cost-amount">$4,000/mes</div>
+      <div class="cost-desc">Permanente. IA bots + descripciones automáticas.</div>
+    </div>
+
+    <div class="cost-item fade-in">
+      <div class="cost-label">Higgsfield (9000 créditos)</div>
+      <div class="cost-amount">$7,500/mes</div>
+      <div class="cost-desc">$375 USD × 20. Generar visuals de tours a escala.</div>
+    </div>
+
+    <div class="cost-item fade-in">
+      <div class="cost-label">AWS + Vercel</div>
+      <div class="cost-amount">$1,400/mes</div>
+      <div class="cost-desc">Hosting + database. Escala automática.</div>
+    </div>
+
+    <div class="cost-item fade-in">
+      <div class="cost-label">SendGrid + Twilio + SMS</div>
+      <div class="cost-amount">$800/mes</div>
+      <div class="cost-desc">Email + WhatsApp + SMS. Notifications 24/7.</div>
+    </div>
+
+    <div class="cost-item fade-in">
+      <div class="cost-label">n8n + Automation</div>
+      <div class="cost-amount">$600/mes</div>
+      <div class="cost-desc">Workflows automáticos.</div>
+    </div>
+
+    <div class="cost-item fade-in">
+      <div class="cost-label">Marketing (Variable)</div>
+      <div class="cost-amount">$10k - $35k/mes</div>
+      <div class="cost-desc">TikTok, Instagram, Google Ads. Escalable según ROI.</div>
+    </div>
+  </div>
+
+  <div class="money-box">
+    <div class="money-label">TOTAL FASE 2 (Mes 4+)</div>
+    <div class="money-amount">$24,300 MXN (base)</div>
+    <p style="color: #7a9ab8; margin-top: 10px;">+ Marketing variable ($10k-$35k/mes según plan)</p>
+  </div>
+
+  <div class="highlight-box">
+    <strong>Por qué estos costos:</strong><br>
+    • Claude API = el modelo IA más avanzado para bots + descripción<br>
+    • Higgsfield = generar imágenes de tours a escala (sin pagarle a fotógrafos)<br>
+    • AWS = la infraestructura más confiable para datos de turistas<br>
+    • El resto = herramientas estándar (Vercel, SendGrid, n8n)<br><br>
+    <strong>TL;DR:</strong> Pagaste $73.5k para armar. Ahora pagas $24.3k/mes para operar + variable para crecer. Después del 2do mes de ventas, el ROI es brutal.
+  </div>
+</section>
+
+<!-- NÚMEROS -->
+<section id="numeros">
+  <h2>La Proyección Financiera (2 Años)</h2>
+
+  <div class="section-intro">
+    Aquí vamos a ser REALISTAS. No prometemos unicornios. Pero sí prometemos que estos números son alcanzables con disciplina. Dos escenarios: LEAN (conservador) y GROWTH (agresivo).
+  </div>
+
+  <div class="tabs">
+    <button class="tab-btn active" onclick="switchTab('lean')">LEAN ($24.3k/mes)</button>
+    <button class="tab-btn" onclick="switchTab('growth')">GROWTH ($60k+/mes)</button>
+  </div>
+
+  <!-- LEAN -->
+  <div id="lean" class="tab-content active">
+    <div style="background: rgba(15,35,60,.4); padding: 40px; border-radius: 12px; border: 1px solid rgba(6,182,212,.15); margin-bottom: 40px;">
+      <h3 style="color: var(--turq); margin-bottom: 20px;">ESCENARIO LEAN: Conservador pero Seguro</h3>
+      <p style="color: #a8c5d8; line-height: 1.8;">
+        <strong>Estrategia:</strong> Empezamos sin marketing agresivo. Solo content + organic + referrals. Mes 1-2 sin ventas. Mes 3 primeras ventas. Mes 6+ break-even. Año 1: $1.5M EBITDA.
+      </p>
+    </div>
+
+    <div class="cost-grid">
+      <div class="cost-item fade-in">
+        <div class="cost-label">Inversión Inicial</div>
+        <div class="cost-amount">$73.5k</div>
+        <div class="cost-desc">Dev + tools + marketing inicial (3 meses)</div>
+      </div>
+
+      <div class="cost-item fade-in">
+        <div class="cost-label">Break-Even</div>
+        <div class="cost-amount">Mes 6</div>
+        <div class="cost-desc">Primer mes donde ganancia neta = 0</div>
+      </div>
+
+      <div class="cost-item fade-in">
+        <div class="cost-label">M1-6 Revenue</div>
+        <div class="cost-amount">$520k</div>
+        <div class="cost-desc">Ingresos acumulados sin marketing agresivo</div>
+      </div>
+
+      <div class="cost-item fade-in">
+        <div class="cost-label">Year 1 EBITDA</div>
+        <div class="cost-amount">$1.5M</div>
+        <div class="cost-desc">Ganancia bruta antes de salarios adicionales</div>
+      </div>
+
+      <div class="cost-item fade-in">
+        <div class="cost-label">Year 1 ROI</div>
+        <div class="cost-amount">+1,940%</div>
+        <div class="cost-desc">$73.5k → $1.5M en 12 meses</div>
+      </div>
+
+      <div class="cost-item fade-in">
+        <div class="cost-label">Payback Period</div>
+        <div class="cost-amount">5.8 meses</div>
+        <div class="cost-desc">Recuperas inversión + comienzas ganancia</div>
+      </div>
+    </div>
+
+    <div class="chart-container">
+      <canvas id="chartLean"></canvas>
+    </div>
+  </div>
+
+  <!-- GROWTH -->
+  <div id="growth" class="tab-content">
+    <div style="background: rgba(15,35,60,.4); padding: 40px; border-radius: 12px; border: 1px solid rgba(6,182,212,.15); margin-bottom: 40px;">
+      <h3 style="color: var(--turq); margin-bottom: 20px;">ESCENARIO GROWTH: Agresivo y Rápido</h3>
+      <p style="color: #a8c5d8; line-height: 1.8;">
+        <strong>Estrategia:</strong> Marketing agresivo desde mes 1. $35k/mes en ads. Break-even mes 4. Captamos 5-10% del mercado en Year 1. Revenue exponencial. Riesgo mayor = ganancia mayor.
+      </p>
+    </div>
+
+    <div class="cost-grid">
+      <div class="cost-item fade-in">
+        <div class="cost-label">Inversión Inicial</div>
+        <div class="cost-amount">$140k</div>
+        <div class="cost-desc">Dev + tools + marketing agresivo (3 meses)</div>
+      </div>
+
+      <div class="cost-item fade-in">
+        <div class="cost-label">Break-Even</div>
+        <div class="cost-amount">Mes 4</div>
+        <div class="cost-desc">1-2 meses más rápido que LEAN</div>
+      </div>
+
+      <div class="cost-item fade-in">
+        <div class="cost-label">M1-6 Revenue</div>
+        <div class="cost-amount">$2.8M</div>
+        <div class="cost-desc">5.4x el de LEAN. Marketing ROI brutal.</div>
+      </div>
+
+      <div class="cost-item fade-in">
+        <div class="cost-label">Year 1 EBITDA</div>
+        <div class="cost-amount">$8.2M</div>
+        <div class="cost-desc">Ganancia bruta. 5.5x más que LEAN.</div>
+      </div>
+
+      <div class="cost-item fade-in">
+        <div class="cost-label">Year 1 ROI</div>
+        <div class="cost-amount">+5,742%</div>
+        <div class="cost-desc">$140k → $8.2M en 12 meses</div>
+      </div>
+
+      <div class="cost-item fade-in">
+        <div class="cost-label">Payback Period</div>
+        <div class="cost-amount">4.2 meses</div>
+        <div class="cost-desc">Recuperas todo + ganancias mucho más rápido</div>
+      </div>
+    </div>
+
+    <div class="chart-container">
+      <canvas id="chartGrowth"></canvas>
+    </div>
+  </div>
+
+  <div class="highlight-box" style="margin-top: 60px;">
+    <strong>Supuestos del modelo:</strong><br>
+    • <strong>Conversión:</strong> 2-3% de visitantes a tour bookings (REALISTA para marketplace)<br>
+    • <strong>AOV (Average Order Value):</strong> $500 MXN promedio por tour<br>
+    • <strong>Margen:</strong> 15% comisión (nosotros) + 10% (suscripción operadores)<br>
+    • <strong>Customer Acquisition Cost:</strong> $50-100 MXN (ads + organic)<br>
+    • <strong>Repeatability:</strong> 30% de clientes repiten compra en 6 meses<br><br>
+    <strong>¿Por qué estos números son CONSERVADORES?</strong><br>
+    • NO contamos ingresos por publicidad/featured listings (extra $50-150k/año)<br>
+    • NO contamos referral bonuses (extra $30-80k/año)<br>
+    • NO contamos integración con agencias de viaje (potencial $500k+/año)<br>
+    • Conservamos 20% del revenue para contingencias/re-investment
+  </div>
+</section>
+
+<!-- TIMELINE -->
+<section>
+  <h2>Tu Roadmap: 24 Meses Hacia Rentabilidad</h2>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-content">
+        <div class="timeline-time">SEMANA 1-2: Setup</div>
+        <div class="timeline-desc"><strong>Qué hacemos:</strong> Cloud setup (AWS), Git repo, APIs de pagos (Stripe/PayPal), DB schema<br><strong>Costo:</strong> Incluido en MVP</div>
+      </div>
+      <div class="timeline-dot"></div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-content">
+        <div class="timeline-time">SEMANA 3-4: MVP Frontend</div>
+        <div class="timeline-desc"><strong>Qué hacemos:</strong> Landing page, búsqueda de tours, carrito, checkout<br><strong>Resultado:</strong> Sitio funcional pero sin 50+ tours todavía</div>
+      </div>
+      <div class="timeline-dot"></div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-content">
+        <div class="timeline-time">MES 1: Onboarding Operadores</div>
+        <div class="timeline-desc"><strong>Qué hacemos:</strong> Contactar 50+ operadores turísticos en Cancún/Playa/Tulum<br><strong>Ofrerta:</strong> "Ponemos tus tours en plataforma sin costo. Cobramos 15% comisión cuando venda"<br><strong>Resultado:</strong> 40-50 tours en catálogo</div>
+      </div>
+      <div class="timeline-dot"></div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-content">
+        <div class="timeline-time">MES 1.5-2: Bots + IA</div>
+        <div class="timeline-desc"><strong>Qué hacemos:</strong> Claude API para descripciones automáticas + Higgsfield para fotos generadas<br><strong>Resultado:</strong> 50 tours con descripciones premium + imágenes profesionales sin costo</div>
+      </div>
+      <div class="timeline-dot"></div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-content">
+        <div class="timeline-time">MES 2-3: Marketing Inicial</div>
+        <div class="timeline-desc"><strong>Canales:</strong> TikTok ($5k/mes) + Instagram ($5k/mes) + Facebook ($5k/mes) + Google Ads ($5k/mes)<br><strong>Objetivo:</strong> Llegar a primeros 10k turistas potenciales en Cancún area</div>
+      </div>
+      <div class="timeline-dot"></div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-content">
+        <div class="timeline-time">MES 3: First Bookings 🎯</div>
+        <div class="timeline-desc"><strong>Métrica:</strong> 50-100 reservas en mes 3<br><strong>Ingreso:</strong> $25k-50k en comisiones<br><strong>Feedback:</strong> Primeros reviews, iteración rápida</div>
+      </div>
+      <div class="timeline-dot"></div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-content">
+        <div class="timeline-time">MES 4-6: Scale Up</div>
+        <div class="timeline-desc"><strong>Qué hacemos:</strong> Escala marketing $20k-35k/mes. Adds WhatsApp bot. Expand a 100+ tours.<br><strong>Métrica:</strong> 500-1000 bookings/mes<br><strong>Revenue:</strong> $75k-150k/mes</div>
+      </div>
+      <div class="timeline-dot"></div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-content">
+        <div class="timeline-time">MES 6: BREAK-EVEN 📈</div>
+        <div class="timeline-desc"><strong>Hito crítico:</strong> Costos operacionales cubiertos por revenue<br><strong>Significa:</strong> De aquí en adelante, todo es ganancia (después de reinvertir en growth)</div>
+      </div>
+      <div class="timeline-dot"></div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-content">
+        <div class="timeline-time">MES 7-12: Expansion</div>
+        <div class="timeline-desc"><strong>Añadimos:</strong> Booking directo con operadores (+ commission). Reviews verification. Travel insurance integration.<br><strong>Expand a:</strong> Isla Mujeres, Cozumel, Costa Maya<br><strong>Revenue:</strong> $150k-250k/mes</div>
+      </div>
+      <div class="timeline-dot"></div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-content">
+        <div class="timeline-time">MES 12: Year 1 Close 🏁</div>
+        <div class="timeline-desc"><strong>Métrica Year 1:</strong> $1.5M - $8M EBITDA (según escenario)<br><strong>Siguiente:</strong> Hired team, Y2 strategy, potencial Series A</div>
+      </div>
+      <div class="timeline-dot"></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <h3>El Caribe Espera</h3>
+  <p>28 millones de turistas necesitan una plataforma así.<br>
+     Tú necesitas retorno en tu inversión.<br>
+     Nosotros necesitamos capital para acelerar.</p>
+  <p style="color: #7a9ab8; font-size: 14px; margin-top: 30px;">Es un match perfecto. Conversemos de números reales.</p>
+
+  <div class="final-grid">
+    <div class="final-box">
+      <strong>$73.5k</strong>
+      <span>Inversión inicial LEAN</span>
+    </div>
+    <div class="final-box">
+      <strong>Mes 6</strong>
+      <span>Break-even</span>
+    </div>
+    <div class="final-box">
+      <strong>$1.5M - $8M</strong>
+      <span>Year 1 EBITDA</span>
+    </div>
+    <div class="final-box">
+      <strong>1,940% - 5,742%</strong>
+      <span>ROI Year 1</span>
+    </div>
+  </div>
+
+  <p style="margin-top: 80px; color: #7a9ab8; font-size: 12px;">
+    © MAYAN TOURS 2025 | Oportunidad Verificable<br>
+    Datos SEDETUR oficial. Números proyectados sobre mercado real.<br>
+    🌴 Turismo Digital para el Caribe Mexicano
+  </p>
+</footer>
+
+<script>
+  function switchTab(tabName) {
+    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById(tabName).classList.add('active');
+    event.target.classList.add('active');
+    setTimeout(() => {
+      if (tabName === 'lean') initChartLean();
+      if (tabName === 'growth') initChartGrowth();
+    }, 100);
+  }
+
+  function initChartLean() {
+    const ctx = document.getElementById('chartLean');
+    if (!ctx || ctx.chart) return;
+    ctx.chart = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: ['M1', 'M2', 'M3', 'M4', 'M5', 'M6', 'M7', 'M8', 'M9', 'M10', 'M11', 'M12'],
+        datasets: [{
+          label: 'Acumulado Revenue (MXN)',
+          data: [0, 5000, 45000, 130000, 240000, 420000, 645000, 895000, 1180000, 1480000, 1820000, 2200000],
+          borderColor: '#06b6d4',
+          backgroundColor: 'rgba(6,182,212,.1)',
+          borderWidth: 3,
+          fill: true,
+          tension: 0.4,
+          pointRadius: 6,
+          pointBackgroundColor: '#06b6d4',
+          pointBorderColor: '#0a1929',
+          pointBorderWidth: 2,
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: { legend: { display: true, labels: { color: '#a8c5d8', font: { size: 12 } } } },
+        scales: {
+          y: { beginAtZero: true, grid: { color: 'rgba(6,182,212,.1)' }, ticks: { color: '#7a9ab8', callback: (v) => '$' + (v/1000).toFixed(0) + 'k' } },
+          x: { grid: { color: 'rgba(6,182,212,.05)' }, ticks: { color: '#7a9ab8' } }
+        }
+      }
+    });
+  }
+
+  function initChartGrowth() {
+    const ctx = document.getElementById('chartGrowth');
+    if (!ctx || ctx.chart) return;
+    ctx.chart = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: ['M1', 'M2', 'M3', 'M4', 'M5', 'M6', 'M7', 'M8', 'M9', 'M10', 'M11', 'M12'],
+        datasets: [{
+          label: 'Acumulado Revenue (MXN)',
+          data: [28000, 95000, 280000, 580000, 1050000, 1640000, 2450000, 3480000, 4820000, 6380000, 8150000, 10200000],
+          borderColor: '#f59e0b',
+          backgroundColor: 'rgba(245,158,11,.1)',
+          borderWidth: 3,
+          fill: true,
+          tension: 0.4,
+          pointRadius: 6,
+          pointBackgroundColor: '#f59e0b',
+          pointBorderColor: '#0a1929',
+          pointBorderWidth: 2,
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: { legend: { display: true, labels: { color: '#a8c5d8', font: { size: 12 } } } },
+        scales: {
+          y: { beginAtZero: true, grid: { color: 'rgba(6,182,212,.1)' }, ticks: { color: '#7a9ab8', callback: (v) => '$' + (v/1000).toFixed(0) + 'k' } },
+          x: { grid: { color: 'rgba(6,182,212,.05)' }, ticks: { color: '#7a9ab8' } }
+        }
+      }
+    });
+  }
+
+  setTimeout(initChartLean, 500);
+  document.querySelectorAll('.fade-in').forEach(el => {
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.style.animation = 'fadeInUp 0.8s ease forwards';
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    observer.observe(el);
+  });
+</script>
+
+</body>
+</html>
