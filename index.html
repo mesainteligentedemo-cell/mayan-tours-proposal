@@ -1,1 +1,603 @@
-<html lang="es"><head><title>Mayan Tours - Plan 2026</title><style>*;{margin:0}body{font-family:'Segoe UI',Roboto;background:#0a0a0a;color:#e0e0e0;line-height:1.8;letter-spacing:.3px}html{scroll-behavior:smooth}header{display:block;background:linear-gradient(135deg,rgba(201,169,97,.2),rgba(201,169,97,.08));padding:4rem 2rem;text-align:center;position:sticky;top:0;z)ndex:1000}h1,h2{color:#c9a961}h1{font-size:4rem}h2{font-size:3rem;margin-top:2rem}.container{width:100%;max-width:1100px;margin:0 auto;padding:0 2.5rem}section{padding:3 rem 0;border-bottom:1px solid rgba(201,169,97,.1)}table{width:100%;border-collapse:collapse;margin:2rem 0;\padding:1rem}th,td{padding:1rem;bordder-bottom:1px solid rgba(201,169,97,.1)}th{color:#c9a961;font-weight:700}.list{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;margin:2rem 0}@media(max-width:768px){table{font-size:.9rm}.list{grid-template-columns:1fr}}.card{background:rgba(201,169,97,.05);border:1px solid rgba(201,169,97,.15);background:lnmh-gradient()135deg,blue|shadew(: @media:.08),.Yr*Xw.02));padding:2rem;border-radius:12px;transition:all .3s}card:hover{border:sroCCc9a961;box-shadow:0 20px 0 rgba(201,169,97,.15);transform:translateY(-5px)}.stat{text-align:center;padding:2rem;background:rgba(201,169,97,.12);border:spd solid;border-radius:12px;border-top:3px solid #c9a961}.stat-number{font-size:2.5rem;color:#c9a961;font-weight:800}.stat{display:grid;grid-template-columns:repeat(4,1fr);gap:2 rem;margin:2rem 0}footer{background:rgba(15,15,15,.9);padding:3rem 2rem;text-align:center;color:#888;margin-top:2 rem}.highlight{color:#c9a961;font-weight:700}ul,ol{margin:1rem 0 1 2rem}li{color:#d0d0d0;margin-bottom:.8rem}</style></head><body><header><h1>MAVAH HOURS AGENCY</h1><p>Plan de Negocio 2026</p></header><div class="container"><section><h2>Resumen Ejecutivo</h2><p>Plataforma digital B2C que consolida tours premium. Mercado de 4.2M anuales.</p></section><section><h2>Oportunidad de Mercado</h2><table><tr><th>Region</th><th>Turistas</th><th>Potencial</th></tr><tr><td>Quintana Roo</td><td>2.1M</td><td>$2.1M</td></tr><tr><td>Yucatan</td><td>1.4M</td><td>$2.1M</td></tr></table></section><section><h2>Modelo Financiero</h2><table><tr><th>Mes</th><th>Tours</th><th>Revenue</th><th>Balance</th></tr><tr><td>1</td><td>10</td><td>$45k</td><td>-$95k</td></tr><tr><td>6</td><td>500</td><td>$2.25M</td><td>BREAK-EVEN</td></tr><tr><td>12</td><td>2.1k</td><td>$9.45M</td><td>$2.45M</td></tr></table></section><section><h2>Marketing, Chatbots y Roadmap</h2><p style="color:#999;font-size:.91rem;"margin:1rem 0">Marketing: 720k/ano,40% Google, 43% Social, 17% Content <br/>Chatbots: WhatsApp, Telegram, Email, Web Chat | N&o: GPT-4<br/>Roadmap: Me#1-3 Foundation, Mes 4-6 Grow (BE), Mes 7-9 Acceleration, Mes 10-12 Dominance</p></section></div><footer><p>Mayan Tours Agency 2026</p><p>B2C Tours Marketplace</p></footer></body></html>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MAYAN TOURS — Propuesta 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --bg: #0a0a0a;
+      --gold: #c9a961;
+      --text1: #f0ead6;
+      --text2: #c2b49a;
+      --text3: #8a7d68;
+    }
+    html, body { width: 100%; height: 100%; background: var(--bg); color: var(--text1); overflow: hidden; }
+    body { font-family: 'Space Grotesk', sans-serif; }
+
+    #deck { position: fixed; inset: 0; overflow: hidden; }
+    #track { display: flex; width: calc(16 * 100vw); height: 100%; transition: transform 0.8s cubic-bezier(0.86,0,0.07,1); }
+    .slide { width: 100vw; height: 100vh; flex-shrink: 0; position: relative; display: grid; overflow: hidden; }
+
+    .top-bar {
+      position: absolute; top: 0; left: 0; right: 0;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 24px 64px; z-index: 10; border-bottom: 1px solid rgba(201,169,97,.1);
+      background: rgba(10,10,10,.5); backdrop-filter: blur(10px);
+    }
+    .logo { font-size: 11px; font-weight: 600; letter-spacing: .4em; color: var(--gold); text-transform: uppercase; }
+    .slide-label { font-size: 10px; letter-spacing: .25em; color: var(--text3); }
+
+    #dots {
+      position: fixed; bottom: 36px; left: 50%; transform: translateX(-50%);
+      display: flex; gap: 8px; z-index: 101;
+    }
+    .dot { width: 4px; height: 4px; border-radius: 50%; background: var(--text3); cursor: pointer; transition: all .35s; }
+    .dot.active { background: var(--gold); transform: scale(2); }
+
+    .arrow {
+      position: fixed; top: 50%; transform: translateY(-50%);
+      width: 48px; height: 48px; border: 1px solid rgba(201,169,97,.2);
+      background: none; color: var(--text3); font-size: 14px;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; z-index: 101; transition: all .25s; font-family: 'Space Grotesk', sans-serif;
+    }
+    .arrow:hover { border-color: var(--gold); color: var(--gold); background: rgba(201,169,97,.08); }
+    #prev { left: 24px; } #next { right: 24px; }
+    #prev.h, #next.h { opacity: 0; pointer-events: none; }
+
+    #s1 { grid-template-rows: 1fr; place-items: center; background: linear-gradient(135deg, rgba(201,169,97,.08), rgba(201,169,97,.02)); }
+    #s1 .cover-content { text-align: center; display: flex; flex-direction: column; align-items: center; }
+
+    #s2, #s3, #s4, #s5, #s6, #s7, #s8, #s9, #s10, #s11, #s12, #s13, #s14, #s15, #s16 {
+      grid-template-columns: 1fr 1fr; padding: 0;
+    }
+
+    .col-l {
+      padding: 110px 56px 80px 80px; border-right: 1px solid rgba(201,169,97,.1);
+      height: 100%; display: flex; flex-direction: column; justify-content: center; gap: 28px;
+    }
+    .col-r {
+      padding: 80px; height: 100%; display: flex; flex-direction: column; justify-content: center; gap: 24px;
+    }
+
+    .eyebrow { font-size: 11px; font-weight: 600; letter-spacing: .4em; color: var(--gold); text-transform: uppercase; margin-bottom: 28px; }
+    .cover-name { font-family: 'Instrument Serif', serif; font-size: clamp(72px, 9vw, 96px); font-weight: 300; font-style: italic; color: var(--gold); line-height: 0.9; margin-bottom: 8px; }
+    .cover-title { font-family: 'Instrument Serif', serif; font-size: clamp(28px, 3.5vw, 40px); font-weight: 300; margin-bottom: 32px; }
+    .cover-rule { height: 1px; width: 200px; margin: 32px 0; background: linear-gradient(90deg, transparent, var(--gold), transparent); }
+    .cover-svc { font-size: 12px; font-weight: 500; letter-spacing: .3em; color: var(--gold); text-transform: uppercase; margin-bottom: 12px; }
+    .cover-co { font-size: 13px; font-weight: 300; color: var(--text2); letter-spacing: .08em; }
+    .cover-date { position: absolute; bottom: 64px; right: 80px; font-size: 10px; color: var(--text3); letter-spacing: .2em; }
+
+    .big-h { font-family: 'Instrument Serif', serif; font-size: clamp(40px, 5vw, 64px); font-weight: 300; line-height: 1.05; }
+    .big-h em { font-style: italic; color: var(--gold); }
+
+    .body-t { font-size: 15px; font-weight: 300; color: var(--text2); line-height: 1.75; max-width: 420px; }
+    .pull-q { font-family: 'Instrument Serif', serif; font-size: 18px; font-style: italic; color: var(--gold); line-height: 1.5; padding-left: 24px; border-left: 2px solid rgba(201,169,97,.4); }
+
+    .fact { border-left: 2px solid rgba(201,169,97,.4); padding: 0 0 0 24px; margin-bottom: 20px; }
+    .fact-t { font-size: 10px; font-weight: 600; letter-spacing: .25em; color: var(--gold); text-transform: uppercase; margin-bottom: 6px; }
+    .fact-v { font-family: 'Instrument Serif', serif; font-size: clamp(32px, 3.5vw, 48px); font-weight: 300; }
+    .fact-d { font-size: 13px; color: var(--text2); margin-top: 8px; line-height: 1.6; }
+
+    .item { display: flex; align-items: flex-start; gap: 16px; padding: 16px 0; border-bottom: 1px solid rgba(201,169,97,.1); }
+    .item:last-child { border-bottom: none; }
+    .item-num { font-family: 'Instrument Serif', serif; font-size: 28px; font-weight: 200; color: var(--gold); flex-shrink: 0; width: 32px; }
+    .item-title { font-size: 14px; font-weight: 600; margin-bottom: 4px; color: var(--text1); }
+    .item-desc { font-size: 13px; font-weight: 300; color: var(--text2); line-height: 1.5; }
+
+    .chart-container { position: relative; height: 300px; margin-top: 20px; }
+
+    .slide.on .a1 { animation: up 0.75s cubic-bezier(0.86,0,0.07,1) 0.05s both; }
+    .slide.on .a2 { animation: up 0.75s cubic-bezier(0.86,0,0.07,1) 0.18s both; }
+    .slide.on .a3 { animation: up 0.75s cubic-bezier(0.86,0,0.07,1) 0.30s both; }
+    .slide.on .a4 { animation: up 0.75s cubic-bezier(0.86,0,0.07,1) 0.42s both; }
+    .slide.on .a5 { animation: up 0.75s cubic-bezier(0.86,0,0.07,1) 0.54s both; }
+    .slide.on .a6 { animation: up 0.75s cubic-bezier(0.86,0,0.07,1) 0.66s both; }
+    @keyframes up { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: translateY(0); } }
+
+    footer { position: absolute; bottom: 24px; left: 64px; font-size: 10px; color: var(--text3); letter-spacing: .15em; }
+  </style>
+</head>
+<body>
+
+<div id="deck">
+  <div class="top-bar">
+    <div class="logo">🌴 MAYAN TOURS</div>
+    <div class="slide-label" id="slideLabel">01 / 16</div>
+  </div>
+
+  <div id="track">
+    <!-- SLIDE 1: PORTADA -->
+    <div class="slide" id="s1">
+      <div class="cover-content">
+        <div class="eyebrow a1">Plan de Negocio 2026</div>
+        <div class="cover-name a2">MAYAN<br>TOURS</div>
+        <div class="cover-title a3">Agency</div>
+        <div class="cover-rule a4"></div>
+        <div class="cover-svc a5">Marketplace Digital Premium</div>
+        <div class="cover-co a6">Quintana Roo & Yucatan</div>
+      </div>
+      <div class="cover-date">Junio 2026</div>
+    </div>
+
+    <!-- SLIDE 2: RESUMEN EJECUTIVO -->
+    <div class="slide" id="s2">
+      <div class="col-l">
+        <div class="big-h a1">Resumen <em>Ejecutivo</em></div>
+        <div class="body-t a2">Plataforma digital B2C que consolida tours premium en dos estados. Mercado de $4.2M anual sin oferta integrada.</div>
+        <div class="pull-q a3">"$2.8M revenue, $1.1M ganancia, 440% ROI en Year 1"</div>
+      </div>
+      <div class="col-r">
+        <div class="fact a4">
+          <div class="fact-t">Inversion Inicial</div>
+          <div class="fact-v">$250k</div>
+          <div class="fact-d">Cubre infraestructura, equipo, marketing M1-3</div>
+        </div>
+        <div class="fact a5">
+          <div class="fact-t">Break-Even</div>
+          <div class="fact-v">Mes 6</div>
+          <div class="fact-d">500 tours booked, $450k margen positivo</div>
+        </div>
+        <div class="fact a6">
+          <div class="fact-t">EBITDA Ano 1</div>
+          <div class="fact-v">35%</div>
+          <div class="fact-d">Margen sostenible con automatizacion IA</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 3: OPORTUNIDAD DE MERCADO -->
+    <div class="slide" id="s3">
+      <div class="col-l">
+        <div class="big-h a1">Oportunidad de <em>Mercado</em></div>
+        <div class="body-t a2">3.5 millones de turistas visitan la region anualmente. Sin plataforma centralizada. Mercado fragmentado sin trust.</div>
+        <div class="pull-q a3">"First-mover advantage en consolidacion digital"</div>
+      </div>
+      <div class="col-r">
+        <div class="item a4">
+          <div class="item-num">1</div>
+          <div>
+            <div class="item-title">Quintana Roo</div>
+            <div class="item-desc">2.1M turistas/ano, $2,500 USD gasto promedio</div>
+          </div>
+        </div>
+        <div class="item a5">
+          <div class="item-num">2</div>
+          <div>
+            <div class="item-title">Yucatan</div>
+            <div class="item-desc">1.4M turistas/ano, $2,000 USD gasto promedio</div>
+          </div>
+        </div>
+        <div class="item a6">
+          <div class="item-num">3</div>
+          <div>
+            <div class="item-title">Ventaja</div>
+            <div class="item-desc">IA 24/7, precios dinamicos, ratings verificados</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 4: MODELO FINANCIERO -->
+    <div class="slide" id="s4">
+      <div class="col-l">
+        <div class="big-h a1">Modelo <em>Financiero</em></div>
+        <div class="body-t a2">Comisiones variables 10-20%. Tours creciendo 33% MoM. Proyecciones conservadoras basadas en mercado comparable.</div>
+      </div>
+      <div class="col-r">
+        <div class="fact a4">
+          <div class="fact-t">Tours Mes 12</div>
+          <div class="fact-v">2,100</div>
+          <div class="fact-d">Crecimiento de 10 a 2,100 en 12 meses</div>
+        </div>
+        <div class="fact a5">
+          <div class="fact-t">Revenue Bruto</div>
+          <div class="fact-v">$9.45M</div>
+          <div class="fact-d">Tour price $3,000, comision 15%</div>
+        </div>
+        <div class="fact a6">
+          <div class="fact-t">Profit Neto</div>
+          <div class="fact-v">$1.1M</div>
+          <div class="fact-d">Despues costos ops, marketing, infrastructure</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 5: PROYECCIONES 12 MESES -->
+    <div class="slide" id="s5">
+      <div class="col-l">
+        <div class="big-h a1">Proyecciones <em>12 Meses</em></div>
+        <div class="body-t a2">Break-even mes 6, 33% MoM M1-6, 15% sustainable M7-12. Crecimiento comprobado y lineal.</div>
+      </div>
+      <div class="col-r">
+        <div class="chart-container a4">
+          <canvas id="chart1"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 6: ESTRATEGIA DE MARKETING -->
+    <div class="slide" id="s6">
+      <div class="col-l">
+        <div class="big-h a1">Marketing <em>Strategy</em></div>
+        <div class="body-t a2">$720k anuales. 40% Google, 43% Social, 17% Content. Omnichannel approach con conversion focus.</div>
+      </div>
+      <div class="col-r">
+        <div class="fact a4">
+          <div class="fact-t">Google & SEO</div>
+          <div class="fact-v">$288k</div>
+          <div class="fact-d">40% presupuesto. Search, display, blog, local</div>
+        </div>
+        <div class="fact a5">
+          <div class="fact-t">Social Media</div>
+          <div class="fact-v">$310k</div>
+          <div class="fact-d">43% presupuesto. Instagram, TikTok, influencers</div>
+        </div>
+        <div class="fact a6">
+          <div class="fact-t">Content & Email</div>
+          <div class="fact-v">$122k</div>
+          <div class="fact-d">17% presupuesto. Video guides, newsletters</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 7: CHATBOTS OMNICHANNEL -->
+    <div class="slide" id="s7">
+      <div class="col-l">
+        <div class="big-h a1">Chatbots <em>Omnichannel</em></div>
+        <div class="body-t a2">Sistema 24/7 con GPT-4. Reduce costos operacionales 70%. Automata ventas y soporte escalable.</div>
+      </div>
+      <div class="col-r">
+        <div class="item a4">
+          <div class="item-num">1</div>
+          <div>
+            <div class="item-title">WhatsApp Business</div>
+            <div class="item-desc">Sales flow automatico, confirmacion reservas, support escalation</div>
+          </div>
+        </div>
+        <div class="item a5">
+          <div class="item-num">2</div>
+          <div>
+            <div class="item-title">Telegram & Email</div>
+            <div class="item-desc">Broadcast 10k+, welcome series, abandoned cart recovery</div>
+          </div>
+        </div>
+        <div class="item a6">
+          <div class="item-num">3</div>
+          <div>
+            <div class="item-title">Web Chat & CRM</div>
+            <div class="item-desc">Widget 24/7, IA FAQ, conversion tracking integrado</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 8: ROADMAP FOUNDATION -->
+    <div class="slide" id="s8">
+      <div class="col-l">
+        <div class="big-h a1">Roadmap: <em>Foundation</em></div>
+        <div class="body-t a2">Meses 1-3. Launch web, 20 tours, chatbot MVP, 10k followers social. Base solida.</div>
+      </div>
+      <div class="col-r">
+        <div class="fact a4">
+          <div class="fact-t">Revenue Target</div>
+          <div class="fact-v">$45-90k</div>
+          <div class="fact-d">10 tours M1, 30 M2, 50 M3</div>
+        </div>
+        <div class="fact a5">
+          <div class="fact-t">Marketing Budget</div>
+          <div class="fact-v">$30-50k</div>
+          <div class="fact-d">Search campaigns, social awareness</div>
+        </div>
+        <div class="fact a6">
+          <div class="fact-t">Hitos Clave</div>
+          <div class="fact-d">✓ Web live ✓ Operators onboarded ✓ IA setup</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 9: ROADMAP GROWTH -->
+    <div class="slide" id="s9">
+      <div class="col-l">
+        <div class="big-h a1">Roadmap: <em>Growth</em></div>
+        <div class="body-t a2">Meses 4-6. 30+ tours, break-even en mes 6, partnerships con hoteles premium.</div>
+      </div>
+      <div class="col-r">
+        <div class="fact a4">
+          <div class="fact-t">Revenue Target</div>
+          <div class="fact-v">$900k-2.25M</div>
+          <div class="fact-d">33% MoM growth. Tours 100 -> 500</div>
+        </div>
+        <div class="fact a5">
+          <div class="fact-t">Marketing Budget</div>
+          <div class="fact-v">$60-75k/mes</div>
+          <div class="fact-d">Amplify winners, influencer partnerships</div>
+        </div>
+        <div class="fact a6">
+          <div class="fact-t">Hitos Clave</div>
+          <div class="fact-d">✓ Break-even ✓ 30+ tours ✓ $450k margen</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 10: ROADMAP EXPANSION -->
+    <div class="slide" id="s10">
+      <div class="col-l">
+        <div class="big-h a1">Roadmap: <em>Expansion</em></div>
+        <div class="body-t a2">Meses 7-12. Cozumel, Isla Mujeres. Transport + experiences marketplace. Dominancia regional.</div>
+      </div>
+      <div class="col-r">
+        <div class="fact a4">
+          <div class="fact-t">Revenue Target</div>
+          <div class="fact-v">$3.15M-9.45M</div>
+          <div class="fact-d">Tours: 1,500 (M9) -> 2,100 (M12)</div>
+        </div>
+        <div class="fact a5">
+          <div class="fact-t">Marketing Budget</div>
+          <div class="fact-v">$75-100k/mes</div>
+          <div class="fact-d">Brand dominance, retention, new verticals</div>
+        </div>
+        <div class="fact a6">
+          <div class="fact-t">Hitos Clave</div>
+          <div class="fact-d">✓ Multi-destinos ✓ $1M+ profit ✓ #1 awareness</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 11: TECH STACK -->
+    <div class="slide" id="s11">
+      <div class="col-l">
+        <div class="big-h a1">Tech Stack <em>Escalable</em></div>
+        <div class="body-t a2">Herramientas modernas desplegadas progresivamente segun necesidad. Arquitectura cloud-native y serverless.</div>
+      </div>
+      <div class="col-r">
+        <div class="item a4">
+          <div class="item-num">1</div>
+          <div>
+            <div class="item-title">Frontend & Hosting</div>
+            <div class="item-desc">Next.js 14, React 18, TypeScript, Tailwind, Vercel</div>
+          </div>
+        </div>
+        <div class="item a5">
+          <div class="item-num">2</div>
+          <div>
+            <div class="item-title">Backend & Database</div>
+            <div class="item-desc">Node.js, Express, PostgreSQL, AWS RDS, S3</div>
+          </div>
+        </div>
+        <div class="item a6">
+          <div class="item-num">3</div>
+          <div>
+            <div class="item-title">IA & Automation</div>
+            <div class="item-desc">OpenAI GPT-4, ElevenLabs, n8n Pro, Higgsfield</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 12: COSTOS DE INFRASTRUCTURE -->
+    <div class="slide" id="s12">
+      <div class="col-l">
+        <div class="big-h a1">Costos de <em>Infraestructura</em></div>
+        <div class="body-t a2">Desglose realista. $850 -> $1,550 -> $2,350 en escalas progresivas. Flexible y escalable.</div>
+      </div>
+      <div class="col-r">
+        <div class="fact a4">
+          <div class="fact-t">M1-3 Promedio</div>
+          <div class="fact-v">$850/mes</div>
+          <div class="fact-d">Vercel, AWS, OpenAI, ElevenLabs, n8n</div>
+        </div>
+        <div class="fact a5">
+          <div class="fact-t">M4-6 Promedio</div>
+          <div class="fact-v">$1,550/mes</div>
+          <div class="fact-d">+ Analytics, Mixpanel, aumentar quotas</div>
+        </div>
+        <div class="fact a6">
+          <div class="fact-t">M7-12 Promedio</div>
+          <div class="fact-v">$2,350/mes</div>
+          <div class="fact-d">+ Scale, Redis, CloudFlare, Kubernetes prep</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 13: ESCENARIOS DE INVERSION -->
+    <div class="slide" id="s13">
+      <div class="col-l">
+        <div class="big-h a1">Escenarios de <em>Inversion</em></div>
+        <div class="body-t a2">4 opciones flexible. Recomendacion: $250k para maximo ROI. Ver comparativa de retornos reales.</div>
+      </div>
+      <div class="col-r">
+        <div class="chart-container a4">
+          <canvas id="chart2"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 14: PROPUESTA COMERCIAL -->
+    <div class="slide" id="s14">
+      <div class="col-l">
+        <div class="big-h a1">Propuesta <em>Comercial</em></div>
+        <div class="body-t a2">Estructura de governance y retorno esperado. Transparencia total. Alineamiento de incentivos.</div>
+      </div>
+      <div class="col-r">
+        <div class="fact a4">
+          <div class="fact-t">Inversion Recomendada</div>
+          <div class="fact-v">$250,000</div>
+          <div class="fact-d">~$3.6M MXN al cambio actual</div>
+        </div>
+        <div class="fact a5">
+          <div class="fact-t">Retorno Year 1</div>
+          <div class="fact-v">280% ROI</div>
+          <div class="fact-d">$700k USD profit. Break-even mes 6</div>
+        </div>
+        <div class="fact a6">
+          <div class="fact-t">Estructura</div>
+          <div class="fact-d">Equity + management rights. Financieros mensuales. Transparencia total</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 15: PROXIMOS PASOS -->
+    <div class="slide" id="s15">
+      <div class="col-l">
+        <div class="big-h a1">Proximos <em>Pasos</em></div>
+        <div class="body-t a2">Timeline realista. 4 semanas validacion, 2 setup, go-live mes 1. Hitos claros y mesurables.</div>
+      </div>
+      <div class="col-r">
+        <div class="item a4">
+          <div class="item-num">1</div>
+          <div>
+            <div class="item-title">Semana 1-2: Validacion</div>
+            <div class="item-desc">Revisar propuesta, Q&A, due diligence</div>
+          </div>
+        </div>
+        <div class="item a5">
+          <div class="item-num">2</div>
+          <div>
+            <div class="item-title">Semana 3-4: Estructura</div>
+            <div class="item-desc">Documentos legales, governance, bank setup</div>
+          </div>
+        </div>
+        <div class="item a6">
+          <div class="item-num">3</div>
+          <div>
+            <div class="item-title">Mes 1: Launch</div>
+            <div class="item-desc">Infrastructure live, team onboarded, marketing active</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 16: CLOSING -->
+    <div class="slide" id="s16" style="place-items: center; justify-items: center;">
+      <div style="text-align: center; padding: 80px;">
+        <div class="eyebrow a1" style="margin-bottom: 32px;">Listo para Crecer</div>
+        <div style="font-family: 'Instrument Serif', serif; font-size: 56px; font-weight: 300; color: var(--gold); margin-bottom: 24px;" class="a2">$2.8M</div>
+        <div style="font-size: 14px; color: var(--text2); max-width: 480px; margin-bottom: 48px;" class="a3">Revenue Year 1 • $1.1M Profit • 440% ROI • Mes 6 Break-Even</div>
+        <div style="font-size: 12px; letter-spacing: .2em; color: var(--text3); text-transform: uppercase;" class="a4">hola@mayantours.mx • +52 984 XXX XXXX</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div id="dots"></div>
+<button id="prev" class="arrow">&larr;</button>
+<button id="next" class="arrow">&rarr;</button>
+
+<footer>Mayan Tours Agency — Propuesta de Negocio 2026</footer>
+
+<script>
+const slides = document.querySelectorAll('.slide');
+const track = document.getElementById('track');
+const dots = document.getElementById('dots');
+const prevBtn = document.getElementById('prev');
+const nextBtn = document.getElementById('next');
+const slideLabel = document.getElementById('slideLabel');
+let current = 0;
+
+slides.forEach((_, i) => {
+  const dot = document.createElement('div');
+  dot.className = 'dot' + (i === 0 ? ' active' : '');
+  dot.onclick = () => goToSlide(i);
+  dots.appendChild(dot);
+});
+
+function updateSlide() {
+  track.style.transform = 'translateX(' + (-current * 100) + 'vw)';
+  slides.forEach(s => s.classList.remove('on'));
+  slides[current].classList.add('on');
+  document.querySelectorAll('.dot').forEach((d, i) => {
+    d.classList.toggle('active', i === current);
+  });
+  slideLabel.textContent = String(current + 1).padStart(2, '0') + ' / ' + slides.length;
+  prevBtn.classList.toggle('h', current === 0);
+  nextBtn.classList.toggle('h', current === slides.length - 1);
+}
+
+function goToSlide(n) {
+  current = n;
+  updateSlide();
+}
+
+prevBtn.onclick = () => current > 0 && goToSlide(current - 1);
+nextBtn.onclick = () => current < slides.length - 1 && goToSlide(current + 1);
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowLeft' && current > 0) goToSlide(current - 1);
+  if (e.key === 'ArrowRight' && current < slides.length - 1) goToSlide(current + 1);
+});
+
+updateSlide();
+slides[0].classList.add('on');
+
+// Initialize Charts
+setTimeout(() => {
+  // Chart 1: Revenue Progression
+  const ctx1 = document.getElementById('chart1');
+  if (ctx1) {
+    new Chart(ctx1, {
+      type: 'line',
+      data: {
+        labels: ['M1','M2','M3','M4','M5','M6','M7','M8','M9','M10','M11','M12'],
+        datasets: [{
+          label: 'Revenue (USD k)',
+          data: [45,120,225,450,850,1350,2100,3150,4350,5700,7150,9450],
+          borderColor: '#c9a961',
+          backgroundColor: 'rgba(201,169,97,.1)',
+          tension: 0.4,
+          fill: true,
+          pointRadius: 4,
+          pointBackgroundColor: '#c9a961'
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: { legend: { labels: { color: '#f0ead6', font: { size: 11 } } } },
+        scales: {
+          y: { ticks: { color: '#8a7d68' }, grid: { color: 'rgba(201,169,97,.1)' } },
+          x: { ticks: { color: '#8a7d68' }, grid: { display: false } }
+        }
+      }
+    });
+  }
+
+  // Chart 2: ROI by Investment Scenario
+  const ctx2 = document.getElementById('chart2');
+  if (ctx2) {
+    new Chart(ctx2, {
+      type: 'bar',
+      data: {
+        labels: ['$150k','$250k','$350k','$500k'],
+        datasets: [{
+          label: 'Year 1 ROI %',
+          data: [267,280,314,320],
+          backgroundColor: 'rgba(201,169,97,.6)',
+          borderColor: '#c9a961',
+          borderWidth: 2
+        }]
+      },
+      options: {
+        indexAxis: 'y',
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: { legend: { labels: { color: '#f0ead6', font: { size: 11 } } } },
+        scales: {
+          x: { ticks: { color: '#8a7d68' }, grid: { color: 'rgba(201,169,97,.1)' } },
+          y: { ticks: { color: '#8a7d68' } }
+        }
+      }
+    });
+  }
+}, 300);
+</script>
+
+</body>
+</html>
